@@ -3,52 +3,83 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+    Entities entities;
+
     Rigidbody2D rigid;
     SpriteRenderer spr;
-    public GameObject paddle;
+
+    bool moveMouseDownPreviousFrame;
+    Vector2 mouseMoveDownPos;
+    Vector2 mouseMoveUpPos;
+    GameObject paddleLine;
+    Vector3 paddleStart;
 
     const float cooldown = 1f;
     float current = 2f;
 
     // Use this for initialization
     void Start () {
+        entities = GameObject.Find("Entities").GetComponent<Entities>();
         rigid = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
-        paddle.SetActive(false);
     }
 
-    void KeyboardMove() {
-        const float moveSpeed = 30f;
-        var x = Input.GetAxisRaw("Horizontal");
-        var y = Input.GetAxisRaw("Vertical");
+    void InitPaddle(Vector3 startpos) {
+        moveMouseDownPreviousFrame = true;
 
-        var mv = new Vector2(x, y) * moveSpeed;
-        rigid.AddForce(mv);
-        current = 0f;
+        paddleLine = (GameObject) Instantiate(entities.paddleLine, transform.position, Quaternion.identity);
+        var lr = paddleLine.GetComponent<LineRenderer>();
+        lr.SetColors(Color.white, Color.white);
+        lr.SetWidth(0.25f, 0.25f);
+
+        paddleStart = startpos;
+        paddleLine.GetComponent<LineRenderer>().SetPositions(new[] {paddleStart, paddleStart});
+    }
+
+    void ReleasePaddle(Vector3 mousepos) {
+        Object.Destroy(paddleLine);
+        moveMouseDownPreviousFrame = false;
+
+        // TODO: add force based on distance...
+    }
+
+    void UpdatePaddle(Vector3 mousepos) {
+        var dist = Vector3.Distance(paddleStart, mousepos);
+        var lr = paddleLine.GetComponent<LineRenderer>();
+        lr.SetPosition(1, mousepos);
+        lr.SetWidth(0.25f, dist * 0.25f);
+
+        // need max distance/power!
     }
 
     void MouseMove() {
-        // press RMB to make paddle appear at bow of boat.
-        // hold RMB and it draws toward stern.
-        // release RMB to row in direction of mouse.
-        // closeness to end of row range determines row power.
-        if (Input.GetAxisRaw("Fire2") == 1) {
-            paddle.SetActive(true);
+        var moveMouseDownThisFrame = Input.GetMouseButton(1);
+
+        var mousePos = Input.mousePosition;
+        var worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        worldMousePos.z = -1f;
+
+        if (moveMouseDownThisFrame) {
+            if (!moveMouseDownPreviousFrame) {
+                // start paddle action
+                InitPaddle(worldMousePos);
+            } else {
+                // continue paddle action
+                UpdatePaddle(worldMousePos);
+            }
         } else {
-            paddle.SetActive(false);
+            // we are not paddling this frame
+            if (moveMouseDownPreviousFrame) {
+                // end paddle action
+                ReleasePaddle(worldMousePos);
+            }
         }
     }
 
-    void FixedUpdate() {
-        if (current >= cooldown) {
-            KeyboardMove();
-        }
-        MouseMove();
-
-    }
     // Update is called once per frame
     void Update () {
         current += Time.deltaTime;
         spr.flipX = rigid.velocity.x < 0;
+        MouseMove();
     }
 }

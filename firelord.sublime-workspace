@@ -1,0 +1,282 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"shrine",
+				"shrineHeart	GameObject"
+			],
+			[
+				"animationTime",
+				"animationTimeCurrent"
+			],
+			[
+				"shakeTimer",
+				"shakeTimerCurrent"
+			],
+			[
+				"vec",
+				"Vector3	Vector3"
+			],
+			[
+				"player",
+				"playerHealthController"
+			],
+			[
+				"playerhealth",
+				"playerHealthController	(ShrineHeartController.cs)"
+			],
+			[
+				"Shr",
+				"ShrineHeartShard"
+			]
+		]
+	},
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 388.0,
+		"last_filter": "color",
+		"selected_items":
+		[
+			[
+				"color",
+				"Color Picker"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ShrineHeartController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PotionColors.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/SpinePotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ParticleController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ShrineHeartShard.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"();",
+			"911",
+			"FlashHealth",
+			"DamageAnimation",
+			"DamageAnimationFirstFrame"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.variable_get":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"healthc",
+				"Assets/Scripts/HealthController.cs"
+			],
+			[
+				"health",
+				"Assets/Scripts/HealthController.cs"
+			],
+			[
+				"heart",
+				"Assets/Scripts/ShrineHeartController.cs"
+			],
+			[
+				"particle",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"hearts",
+				"Assets/Scripts/ShrineHeartController.cs"
+			],
+			[
+				"spine",
+				"Assets/Scripts/SpinePotionController.cs"
+			],
+			[
+				"uicon",
+				"Assets/Scripts/UIController.cs"
+			],
+			[
+				"potioncol",
+				"Assets/Scripts/PotionColors.cs"
+			],
+			[
+				"trigger",
+				"Assets/Scripts/RoomChangeTrigger.cs"
+			],
+			[
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"heartsh",
+				"Assets/Scripts/ShrineHeartShard.cs"
+			],
+			[
+				"shrinehea",
+				"Assets/Scripts/ShrineHeartController.cs"
+			],
+			[
+				"entities",
+				"Assets/Scripts/Entities.cs"
+			],
+			[
+				"room",
+				"Assets/Scripts/Room.cs"
+			],
+			[
+				"player",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"healt",
+				"Assets/Scripts/HealthController.cs"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+		"_vintageous_last_char_search_command": "vi_f",
+		"_vintageous_last_character_search": ";",
+		"_vintageous_reset_during_init": true,
+		"vintage":
+		{
+			"_cmdline_cd": "/Applications/Sublime Text.app/Contents/MacOS"
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 250.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

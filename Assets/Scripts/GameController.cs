@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour {
     void MakeRock(int x, int y) {
         var go = (GameObject) Instantiate(entities.rockObject, new Vector2(x, y), Quaternion.identity);
         go.GetComponent<SpriteRenderer>().sprite = entities.rocks[Random.Range(0, entities.rocks.Length)];
-        go.GetComponent<SpriteRenderer>().color = entities.palette.lowlight;
+        go.GetComponent<SpriteRenderer>().color = entities.palette.geometry;
         go.transform.parent = mapObjects.transform;
     }
 

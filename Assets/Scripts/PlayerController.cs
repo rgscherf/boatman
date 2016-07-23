@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
     Vector2 mouseMoveUpPos;
     GameObject paddleLine;
     Vector3 paddleStart;
+    const float maxDistance = 20f;
+    const float paddleForceMod = 10f;
 
     const float cooldown = 1f;
     float current = 2f;
@@ -39,20 +41,21 @@ public class PlayerController : MonoBehaviour {
     }
 
     void ReleasePaddle(Vector3 mousepos) {
+        var dist = Mathf.Max(maxDistance, Vector3.Distance(paddleStart, mousepos));
+        var dir = Vector3.ClampMagnitude(paddleStart - mousepos, dist);
+        rigid.AddForce(dir * paddleForceMod);
+
         Object.Destroy(paddleLine);
         moveMouseDownPreviousFrame = false;
-
-        // TODO: add force based on distance...
     }
 
     void UpdatePaddle(Vector3 mousepos) {
-        var dist = Vector3.Distance(paddleStart, mousepos);
         var lr = paddleLine.GetComponent<LineRenderer>();
+        var dist = Vector3.Distance(paddleStart, mousepos);
         mousepos.z = -9;
         lr.SetPosition(1, mousepos);
-        lr.SetWidth(0f, dist * 0.25f);
-
-        // need max distance/power!
+        lr.SetWidth(0f, dist * 0.15f);
+        // need to stop drawing at max distance..
     }
 
     void MouseMove() {
@@ -79,7 +82,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    // Update is called once per frame
+// Update is called once per frame
     void Update () {
         current += Time.deltaTime;
         spr.flipX = rigid.velocity.x < 0;

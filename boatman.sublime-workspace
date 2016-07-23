@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"attackcooldo",
+				"attackCooldownTimer"
+			],
+			[
+				"mousepos",
+				"mousepos"
+			],
+			[
+				"add",
+				"AddForce(Vector2 force)	void"
+			],
+			[
+				"paddle",
+				"paddleStart"
+			],
+			[
 				"Getcom",
 				"GetComponent<T>()	T"
 			],
@@ -72,17 +88,17 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 384.0,
-		"last_filter": "sublime clojure",
+		"height": 392.0,
+		"last_filter": "color",
 		"selected_items":
 		[
 			[
-				"sublime clojure",
-				"SublimeREPL: Clojure"
-			],
-			[
 				"color",
 				"Color Picker"
+			],
+			[
+				"sublime clojure",
+				"SublimeREPL: Clojure"
 			],
 			[
 				"install",
@@ -101,7 +117,7 @@
 				"Package Control: List Packages"
 			]
 		],
-		"width": 524.0
+		"width": 593.0
 	},
 	"console":
 	{
@@ -121,6 +137,8 @@
 	},
 	"file_history":
 	[
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/EnemyBasic.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/TestGeometry.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/WaterTile.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Entities.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/WaterTile.cs",
@@ -168,6 +186,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"pathfinding",
+			"StepAttack",
+			"attackCooldown",
+			"attackOnCooldown",
+			"attackCooldownTimer",
+			"attackTimer",
+			"attacking",
+			"Attack",
+			"targetTransform",
+			"lowlight",
+			"_lowlight",
+			"lowlight",
 			"Move",
 			"rigidbody",
 			"var",
@@ -259,6 +289,38 @@
 		"selected_items":
 		[
 			[
+				"timer",
+				"Assets/Scripts/Timer.cs"
+			],
+			[
+				"enemy",
+				"Assets/Scripts/EnemyBasic.cs"
+			],
+			[
+				"basic",
+				"Assets/Scripts/EnemyBasic.cs"
+			],
+			[
+				"test",
+				"Assets/TestObject.cs"
+			],
+			[
+				"testg",
+				"Assets/TestGeometry.cs"
+			],
+			[
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"color",
+				"Assets/Scripts/BoatmanColors.cs"
+			],
+			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
 				"player",
 				"Assets/Scripts/PlayerController.cs"
 			],
@@ -343,14 +405,6 @@
 				"Assets/Scripts/RoomChangeTrigger.cs"
 			],
 			[
-				"gamecon",
-				"Assets/Scripts/GameController.cs"
-			],
-			[
-				"playercon",
-				"Assets/Scripts/PlayerController.cs"
-			],
-			[
 				"heartsh",
 				"Assets/Scripts/ShrineHeartShard.cs"
 			],
@@ -389,8 +443,10 @@
 	},
 	"settings":
 	{
+		"_vintageous_last_buffer_search": "Attackrecoverytim",
+		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_last_char_search_command": "vi_f",
-		"_vintageous_last_character_search": " ",
+		"_vintageous_last_character_search": ")",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{

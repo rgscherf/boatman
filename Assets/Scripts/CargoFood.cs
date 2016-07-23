@@ -3,14 +3,18 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class CargoFood : ICargo {
+    public float cargoFireTimer {
+        get {
+            return 1f;
+        }
+    }
+    public UnityEngine.GameObject cargoFireObject {
+        get {
+            return GameObject.Find("Entities").GetComponent<Entities>().cargoFoodObject;
+        }
+    }
 
     #region ICargo implementation
-    public void leftClick() {
-        throw new System.NotImplementedException();
-    }
-    public void shopClick() {
-        throw new System.NotImplementedException();
-    }
     public Sprite cargoImage {
         get {
             return GameObject.Find("Entities").GetComponent<Entities>().cargoFoodSprite;

@@ -23,14 +23,17 @@ public class EnemyBasic : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        GetComponent<SpriteRenderer>().color = GameObject.Find("Entities")
-                                               .GetComponent<Entities>()
-                                               .palette
-                                               .danger;
+        var c = GameObject.Find("Entities")
+                .GetComponent<Entities>()
+                .palette
+                .danger;
+        GetComponent<SpriteRenderer>().color = c;
+        GetComponent<HealthController>().Init(1, c);
 
         agent = GetComponent<PolyNavAgent>();
         agent.OnDestinationReached += BeginAttack;
         playerTransform = GameObject.Find("Player").transform;
+
 
         // have to init an instant attack cooldown
         attackCooldownTimer = new Timer(0f);
@@ -95,10 +98,17 @@ public class EnemyBasic : MonoBehaviour {
         }
     }
 
+
+    void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.tag == "Player") {
+            other.gameObject.GetComponent<HealthController>().ReceiveDamage(1);
+        }
+    }
+
     void Pathfind() {
         attackCooldownTimer.Tick(Time.deltaTime);
         var targetpos = GetTarget();
-        agent.SetDestination(playerTransform.position);
+        agent.SetDestination(targetpos);
     }
 
     void StepAttackRecovery() {

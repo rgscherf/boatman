@@ -8,6 +8,13 @@ public class GameController : MonoBehaviour {
     GameObject mapObjects;
 
     Dictionary<int, ICargo> cargo;
+    Dictionary<int, Timer> cargoFireCooldowns;
+
+    void Update() {
+        foreach (var item in cargoFireCooldowns) {
+            item.Value.Tick(Time.deltaTime);
+        }
+    }
 
     // Use this for initialization
     void Start () {
@@ -18,8 +25,11 @@ public class GameController : MonoBehaviour {
         MapInit();
 
         cargo = new Dictionary<int, ICargo>();
+        cargoFireCooldowns = new Dictionary<int, Timer>();
+
         AddCargo(new CargoFood());
         AddCargo(new CargoDagger());
+
     }
 
     bool AddCargo(ICargo item) {
@@ -30,6 +40,7 @@ public class GameController : MonoBehaviour {
             .Where(i => !cargo.ContainsKey(i))
             .First();
             cargo[slot] = item;
+            cargoFireCooldowns[slot] = new Timer(item.cargoFireTimer, true);
             GameObject.Find("Cargo").GetComponent<CargoController>().Repaint(cargo);
             return true;
         } catch {
@@ -79,5 +90,24 @@ public class GameController : MonoBehaviour {
         go.GetComponent<SpriteRenderer>().sprite = entities.rocks[Random.Range(0, entities.rocks.Length)];
         go.GetComponent<SpriteRenderer>().color = entities.palette.geometry;
         go.transform.parent = mapObjects.transform;
+    }
+
+    public GameObject SelectedFireObject(int index) {
+        return cargo[index].cargoFireObject;
+    }
+    public CargoType SelectedFireType(int index) {
+        return cargo[index].cargoType;
+    }
+    public bool SelectedCanFire(int index) {
+        return cargoFireCooldowns.ContainsKey(index) ? cargoFireCooldowns[index].Check() : false;
+    }
+    public void FireCleanup(int index) {
+        if (cargo[index].cargoType == CargoType.Food) {
+            cargo.Remove(index);
+            cargoFireCooldowns.Remove(index);
+            GameObject.Find("Cargo").GetComponent<CargoController>().Repaint(cargo);
+        } else {
+            cargoFireCooldowns[index].Reset();
+        }
     }
 }

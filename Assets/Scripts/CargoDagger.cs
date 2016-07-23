@@ -2,13 +2,17 @@
 using System.Collections;
 
 public class CargoDagger : ICargo {
+    public float cargoFireTimer {
+        get {
+            return 0.35f;
+        }
+    }
+    public GameObject cargoFireObject {
+        get {
+            return GameObject.Find("Entities").GetComponent<Entities>().cargoDaggerObject;
+        }
+    }
     #region ICargo implementation
-    public void leftClick() {
-        throw new System.NotImplementedException();
-    }
-    public void shopClick() {
-        throw new System.NotImplementedException();
-    }
     public UnityEngine.Sprite cargoImage {
         get {
             return GameObject.Find("Entities").GetComponent<Entities>().cargoDaggerSprite;
@@ -24,7 +28,7 @@ public class CargoDagger : ICargo {
             return "Weak melee weapon with short range.";
         }
     }
-    public global::CargoType cargoType {
+    public CargoType cargoType {
         get {
             return CargoType.Dagger;
         }

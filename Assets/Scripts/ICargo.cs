@@ -11,6 +11,6 @@ public interface ICargo {
     string cargoBody {get;}
     CargoType cargoType {get;}
 
-    void leftClick();
-    void shopClick();
+    GameObject cargoFireObject {get;}
+    float cargoFireTimer {get;}
 }

@@ -8,22 +8,13 @@ public class CargoController : MonoBehaviour {
     Dictionary<int, GameObject> cargoSlots;
     Entities entities;
 
-    int currentSelection;
+    public int currentSelection;
     Timer selectionBlinkTimer;
     bool originalColor;
-    const float selectionBlinkSpeed = 0.5f;
+    const float selectionBlinkSpeed = 0.25f;
 
     void Update() {
-        if (currentSelection != 0) {
-            selectionBlinkTimer.Tick(Time.deltaTime);
-            if (selectionBlinkTimer.Check()) {
-                cargoSlots[currentSelection].GetComponent<Image>().color = originalColor ?
-                        entities.palette.player :
-                        entities.palette.geometry;
-                originalColor = !originalColor;
-                selectionBlinkTimer.Reset();
-            }
-        }
+        UpdateSelectionColor();
     }
 
     void Awake() {
@@ -52,6 +43,19 @@ public class CargoController : MonoBehaviour {
         }
     }
 
+    void UpdateSelectionColor() {
+        if (currentSelection != 0) {
+            selectionBlinkTimer.Tick(Time.deltaTime);
+            if (selectionBlinkTimer.Check()) {
+                cargoSlots[currentSelection].GetComponent<Image>().color = originalColor ?
+                        entities.palette.player :
+                        entities.palette.geometry;
+                originalColor = !originalColor;
+                selectionBlinkTimer.Reset();
+            }
+        }
+    }
+
     public void ChangeSelection(int c) {
         if (currentSelection != 0) {
             // cleanup previous selection
@@ -62,6 +66,5 @@ public class CargoController : MonoBehaviour {
         currentSelection = c;
         cargoSlots[currentSelection].GetComponent<Image>().color = entities.palette.player;
     }
-
 
 }

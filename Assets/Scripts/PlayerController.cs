@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
     Rigidbody2D rigid;
     SpriteRenderer spr;
     CargoController cargoController;
+    GameController gameController;
+    HullController hullController;
 
     // for paddle-based movement
     bool moveMouseDownPreviousFrame;
@@ -20,10 +22,61 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         entities = GameObject.Find("Entities").GetComponent<Entities>();
         cargoController = GameObject.Find("Cargo").GetComponent<CargoController>();
+        hullController = GameObject.Find("Hull").GetComponent<HullController>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         rigid = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
         spr.color = entities.palette.player;
+        GetComponent<HealthController>().Init(6, spr.color);
     }
+
+    void Update () {
+        spr.flipX = rigid.velocity.x < 0;
+        CheckMovement();
+        CheckCargoSelection();
+        CheckFire();
+    }
+
+
+    ///////////////
+    // PRIMARY FIRE
+    ///////////////
+
+    void CheckFire() {
+        if (Input.GetAxisRaw("Fire1") == 1) {
+            var current = cargoController.currentSelection;
+            if (current == 0) { return; }
+
+            if (gameController.SelectedCanFire(current)) {
+                var fireObject = gameController.SelectedFireObject(current);
+                var go = (GameObject) Instantiate(
+                             fireObject,
+                             transform.position,
+                             Quaternion.identity);
+                go.GetComponent<FireObjectController>().Init(
+                    gameController.SelectedFireType(current),
+                    transform,
+                    (Vector2) MousePos());
+                gameController.FireCleanup(current);
+            }
+        }
+    }
+
+    //////////////////////////
+    // SPECIAL DAMAGE HANDLING
+    //////////////////////////
+
+    public void UpdateHealth(int currentHealth) {
+        hullController.Repaint(currentHealth);
+    }
+
+    public void Die() {
+        Object.Destroy(gameObject);
+    }
+
+    //////////////////////
+    // INVENTORY SELECTION
+    //////////////////////
 
     void CheckCargoSelection() {
         if (Input.GetAxisRaw("Select1") == 1) {
@@ -37,23 +90,21 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    // Update is called once per frame
-    void Update () {
-        spr.flipX = rigid.velocity.x < 0;
-        MouseMove();
-        CheckCargoSelection();
-    }
-
     /////////////////
     // MOVEMENT STUFF
     /////////////////
 
-    void MouseMove() {
-        var moveMouseDownThisFrame = Input.GetMouseButton(1);
-
+    Vector3 MousePos() {
         var mousePos = Input.mousePosition;
         var worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
         worldMousePos.z = -1f;
+        return worldMousePos;
+    }
+
+    void CheckMovement() {
+        var moveMouseDownThisFrame = Input.GetMouseButton(1);
+
+        var worldMousePos = MousePos();
 
         if (moveMouseDownThisFrame) {
             if (!moveMouseDownPreviousFrame) {

@@ -7,8 +7,13 @@ public class Entities : MonoBehaviour {
     public GameObject rockObject;
     public GameObject paddleLine;
 
-    public IPalette palette;
+    public GameObject weaponDagger;
+    public GameObject cargoSupplies;
 
+    public Sprite cargoFoodSprite;
+    public Sprite cargoDaggerSprite;
+
+    public IPalette palette;
     void Awake() {
         palette = new Stories();
     }

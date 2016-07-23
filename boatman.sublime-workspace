@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"f",
+				"FindChild(string name)	Transform"
+			],
+			[
+				"contain",
+				"ContainsKey(TKey key)	bool"
+			],
+			[
 				"attackcooldo",
 				"attackCooldownTimer"
 			],
@@ -88,8 +96,8 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "color",
+		"height": 68.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -137,7 +145,16 @@
 	},
 	"file_history":
 	[
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Entities.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoFood.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/cargoFood.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/ICargo.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/PickupColor.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/EnemyBasic.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoObject.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/UIImageColor.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/UITextColor.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/UIPanel.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/TestGeometry.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/WaterTile.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Entities.cs",
@@ -186,6 +203,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Image",
+			"item",
 			"pathfinding",
 			"StepAttack",
 			"attackCooldown",
@@ -289,15 +308,71 @@
 		"selected_items":
 		[
 			[
+				"entit",
+				"Assets/Scripts/Entities.cs"
+			],
+			[
+				"icargo",
+				"Assets/Scripts/ICargo.cs"
+			],
+			[
+				"cargocon",
+				"Assets/CargoController.cs"
+			],
+			[
+				"cargofo",
+				"Assets/Scripts/CargoFood.cs"
+			],
+			[
+				"cargof",
+				"Assets/Scripts/cargoFood.cs"
+			],
+			[
+				"ic",
+				"Assets/Scripts/ICargo.cs"
+			],
+			[
+				"icar",
+				"Assets/Scripts/ICargo.cs"
+			],
+			[
+				"pickup",
+				"Assets/PickupColor.cs"
+			],
+			[
+				"entities",
+				"Assets/Scripts/Entities.cs"
+			],
+			[
+				"cargo",
+				"Assets/Scripts/CargoObject.cs"
+			],
+			[
+				"uiim",
+				"Assets/Scripts/UIImageColor.cs"
+			],
+			[
+				"uitex",
+				"Assets/UITextColor.cs"
+			],
+			[
+				"uipan",
+				"Assets/UIPanel.cs"
+			],
+			[
+				"game",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"basic",
+				"Assets/Scripts/EnemyBasic.cs"
+			],
+			[
 				"timer",
 				"Assets/Scripts/Timer.cs"
 			],
 			[
 				"enemy",
-				"Assets/Scripts/EnemyBasic.cs"
-			],
-			[
-				"basic",
 				"Assets/Scripts/EnemyBasic.cs"
 			],
 			[
@@ -331,10 +406,6 @@
 			[
 				"wateri",
 				"Assets/Scripts/WaterIlluminationRadius.cs"
-			],
-			[
-				"entities",
-				"Assets/Scripts/Entities.cs"
 			],
 			[
 				"wat",
@@ -446,10 +517,11 @@
 		"_vintageous_last_buffer_search": "Attackrecoverytim",
 		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_last_char_search_command": "vi_f",
-		"_vintageous_last_character_search": ")",
+		"_vintageous_last_character_search": "1",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
+			"_cmdline_cd": "/Applications/Sublime Text.app/Contents/MacOS"
 		}
 	},
 	"show_minimap": true,

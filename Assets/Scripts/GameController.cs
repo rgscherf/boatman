@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
 
     Entities entities;
     GameObject mapObjects;
+
+    Dictionary<int, ICargo> cargo;
 
     // Use this for initialization
     void Start () {
@@ -13,13 +16,27 @@ public class GameController : MonoBehaviour {
         GameObject.Find("background").GetComponent<SpriteRenderer>().color = entities.palette.background;
 
         MapInit();
+
+        cargo = new Dictionary<int, ICargo>();
+        AddCargo(new CargoFood());
+        AddCargo(new CargoDagger());
     }
 
-    // Update is called once per frame
-    void Update () {
-
+    bool AddCargo(ICargo item) {
+        // try to add cargo to hold.
+        // returns true if cargo added, false otherwise
+        try {
+            int slot = new[] {1, 2, 3, 4}
+            .Where(i => !cargo.ContainsKey(i))
+            .First();
+            cargo[slot] = item;
+            GameObject.Find("Cargo").GetComponent<CargoController>().Repaint(cargo);
+            return true;
+        } catch {
+            // throws exception when First() cannot return a value
+            return false;
+        }
     }
-
 
 
     /////////////

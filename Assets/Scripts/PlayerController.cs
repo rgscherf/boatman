@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour {
         entities = GameObject.Find("Entities").GetComponent<Entities>();
         rigid = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
+        spr.color = entities.palette.player;
     }
 
     void InitPaddle(Vector3 startpos) {
@@ -29,9 +30,10 @@ public class PlayerController : MonoBehaviour {
 
         paddleLine = (GameObject) Instantiate(entities.paddleLine, transform.position, Quaternion.identity);
         var lr = paddleLine.GetComponent<LineRenderer>();
-        lr.SetColors(Color.white, Color.white);
+        lr.SetColors(entities.palette.UI, entities.palette.UI);
         lr.SetWidth(0.25f, 0.25f);
 
+        startpos.z = -9;
         paddleStart = startpos;
         paddleLine.GetComponent<LineRenderer>().SetPositions(new[] {paddleStart, paddleStart});
     }
@@ -46,8 +48,9 @@ public class PlayerController : MonoBehaviour {
     void UpdatePaddle(Vector3 mousepos) {
         var dist = Vector3.Distance(paddleStart, mousepos);
         var lr = paddleLine.GetComponent<LineRenderer>();
+        mousepos.z = -9;
         lr.SetPosition(1, mousepos);
-        lr.SetWidth(0.25f, dist * 0.25f);
+        lr.SetWidth(0f, dist * 0.25f);
 
         // need max distance/power!
     }

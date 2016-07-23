@@ -3,49 +3,50 @@ using System.Linq;
 
 public class GameController : MonoBehaviour {
 
-    public GameObject defaultMapTile;
-
     Entities entities;
     GameObject mapObjects;
 
+    void SetupStaticMapObjects() {
+        var targetColor = entities.palette.player;
+        var staticObjects = new[] {"dock-topleft", "dock-bottomright"};
+
+        foreach (var s in staticObjects) {
+            var d = GameObject.Find(s);
+            for (int i = 0; i < d.transform.childCount; i++) {
+                var childSpr = d.transform.GetChild(i).GetComponent<SpriteRenderer>();
+                if (childSpr) {
+                    childSpr.color = targetColor;
+                }
+            }
+        }
+    }
+
+    void MakeRock(int x, int y) {
+        var go = (GameObject) Instantiate(entities.rockObject, new Vector2(x, y), Quaternion.identity);
+        go.GetComponent<SpriteRenderer>().sprite = entities.rocks[Random.Range(0, entities.rocks.Length)];
+        go.GetComponent<SpriteRenderer>().color = entities.palette.lowlight;
+        go.transform.parent = mapObjects.transform;
+    }
+
     void MapInit() {
+        SetupStaticMapObjects();
 
         // generate water tiles
-        const int mapWidth = 40;
-        const int mapHeight = 20;
-        var xrange = Enumerable.Range(0, mapWidth);
-        var yrange = Enumerable.Range(0, mapHeight);
-
-        // foreach (var x in xrange) {
-        //     foreach (var y in yrange) {
-        //         var go = (GameObject) Instantiate(defaultMapTile, new Vector2(x, y), Quaternion.identity);
-        //         go.transform.parent = mapObjects.transform;
-        //     }
-        // }
-
+        // const int mapWidth = 40;
+        // const int mapHeight = 20;
 
         // generate framing rocks
-        foreach (var y in Enumerable.Range(0, 21)) {
-            if (y == 15 || y == 5) { continue; }
-            var go = (GameObject) Instantiate(entities.rockObject, new Vector2(40, y), Quaternion.identity);
-            go.GetComponent<SpriteRenderer>().sprite = entities.rocks[Random.Range(0, entities.rocks.Length)];
-            go.transform.parent = mapObjects.transform;
+        foreach (var y in Enumerable.Range(4, 16)) {
+            MakeRock(40, y);
         }
-        foreach (var y in Enumerable.Range(0, 21)) {
-            if (y == 15 || y == 5) { continue; }
-            var go = (GameObject) Instantiate(entities.rockObject, new Vector2(-1, y), Quaternion.identity);
-            go.GetComponent<SpriteRenderer>().sprite = entities.rocks[Random.Range(0, entities.rocks.Length)];
-            go.transform.parent = mapObjects.transform;
+        foreach (var y in Enumerable.Range(0, 16)) {
+            MakeRock(-1, y);
         }
-        foreach (var x in Enumerable.Range(-1, 42)) {
-            var go = (GameObject) Instantiate(entities.rockObject, new Vector2(x, -1), Quaternion.identity);
-            go.GetComponent<SpriteRenderer>().sprite = entities.rocks[Random.Range(0, entities.rocks.Length)];
-            go.transform.parent = mapObjects.transform;
+        foreach (var x in Enumerable.Range(-1, 37)) {
+            MakeRock(x, -1);
         }
-        foreach (var x in Enumerable.Range(-1, 42)) {
-            var go = (GameObject) Instantiate(entities.rockObject, new Vector2(x, 20), Quaternion.identity);
-            go.GetComponent<SpriteRenderer>().sprite = entities.rocks[Random.Range(0, entities.rocks.Length)];
-            go.transform.parent = mapObjects.transform;
+        foreach (var x in Enumerable.Range(5, 36)) {
+            MakeRock(x, 20);
         }
 
     }
@@ -54,6 +55,7 @@ public class GameController : MonoBehaviour {
     void Start () {
         entities = GameObject.Find("Entities").GetComponent<Entities>();
         mapObjects = GameObject.Find("MapObjects");
+        GameObject.Find("background").GetComponent<SpriteRenderer>().color = entities.palette.background;
 
         MapInit();
 

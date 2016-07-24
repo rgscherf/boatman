@@ -16,6 +16,8 @@ public class Entities : MonoBehaviour {
     public Sprite cargoDaggerSprite;
     public GameObject cargoDaggerObject;
 
+    public GameObject coin;
+
     public IPalette palette;
     void Awake() {
         palette = new Stories();

@@ -5,11 +5,14 @@ public class PlayerController : MonoBehaviour {
 
     Entities entities;
 
+    int booty = 0;
+
     Rigidbody2D rigid;
     SpriteRenderer spr;
     CargoController cargoController;
     GameController gameController;
     HullController hullController;
+    BootyController bootyController;
 
     // for paddle-based movement
     bool moveMouseDownPreviousFrame;
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour {
         entities = GameObject.Find("Entities").GetComponent<Entities>();
         cargoController = GameObject.Find("Cargo").GetComponent<CargoController>();
         hullController = GameObject.Find("Hull").GetComponent<HullController>();
+        bootyController = GameObject.Find("Booty").GetComponent<BootyController>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         rigid = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
@@ -72,6 +76,16 @@ public class PlayerController : MonoBehaviour {
 
     public void Die() {
         Object.Destroy(gameObject);
+    }
+
+
+    ///////////////////
+    // BOOTY OPERATIONS
+    ///////////////////
+
+    public void ReceiveBooty(int amt) {
+        booty += amt;
+        bootyController.Repaint(booty);
     }
 
     //////////////////////

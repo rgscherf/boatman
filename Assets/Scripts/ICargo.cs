@@ -10,6 +10,7 @@ public interface ICargo {
     string cargoTitle {get;}
     string cargoBody {get;}
     CargoType cargoType {get;}
+    int price {get;}
 
     GameObject cargoFireObject {get;}
     float cargoFireTimer {get;}

@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class CargoFood : ICargo {
+    public int price {
+        get { return 1; }
+    }
     public float cargoFireTimer {
         get {
             return 1f;

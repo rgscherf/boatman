@@ -4,6 +4,78 @@
 		"selected_items":
 		[
 			[
+				"dist",
+				"distFromTop"
+			],
+			[
+				"Quater",
+				"Quaternion.identity	(PlayerController.cs)"
+			],
+			[
+				"tick",
+				"TickCheck(float dt)	bool"
+			],
+			[
+				"collid",
+				"Collider2D	Collider2D"
+			],
+			[
+				"SendM",
+				"SendMessage(string methodName)	void"
+			],
+			[
+				"current",
+				"currentHealth	(HealthController.cs)"
+			],
+			[
+				"vector",
+				"Vector3	Vector3"
+			],
+			[
+				"rotate",
+				"Rotate(Vector3 axis, float angle)	void"
+			],
+			[
+				"cargo",
+				"cargoFireCooldowns"
+			],
+			[
+				"look",
+				"LookAt(Vector3 worldPosition)	void"
+			],
+			[
+				"cargot",
+				"cargoType	CargoType { get; }"
+			],
+			[
+				"MouseP",
+				"MousePos()	Vector3"
+			],
+			[
+				"selectedfi",
+				"SelectedFireType(int index)	CargoType"
+			],
+			[
+				"cargofore",
+				"cargoFireObject	(ICargo.cs)"
+			],
+			[
+				"GetAxisR",
+				"GetAxisRaw(string axisName)	float"
+			],
+			[
+				"sle",
+				"selectionBlinkSpeed"
+			],
+			[
+				"selection",
+				"selectionBlinkTimer"
+			],
+			[
+				"Cre",
+				"CreateInstance(string className)	ScriptableObject"
+			],
+			[
 				"f",
 				"FindChild(string name)	Transform"
 			],
@@ -46,10 +118,6 @@
 			[
 				"getcom",
 				"GetComponent<T>()	T"
-			],
-			[
-				"Quater",
-				"Quaternion.identity"
 			],
 			[
 				"Enum",
@@ -96,10 +164,22 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 68.0,
-		"last_filter": "",
+		"height": 392.0,
+		"last_filter": "code",
 		"selected_items":
 		[
+			[
+				"code",
+				"OmniSharpSublime: Code Actions"
+			],
+			[
+				"code ac",
+				"OmniSharpSublime: Code Actions"
+			],
+			[
+				"code c",
+				"OmniSharpSublime: Code Actions"
+			],
 			[
 				"color",
 				"Color Picker"
@@ -145,12 +225,27 @@
 	},
 	"file_history":
 	[
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PickupColor.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/PlayerColor.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/BootyController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Entities.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoFood.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/cargoFood.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/ICargo.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/PickupColor.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/DaggerController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/FireObjectController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/HullController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PlayerController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/EnemyBasic.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/HealthController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/CargoController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/GameController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoDagger.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/FoodController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Timer.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoFood.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/ICargo.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/IFirable.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/BoatmanColors.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/cargoFood.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/PickupColor.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoObject.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/UIImageColor.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/UITextColor.cs",
@@ -189,7 +284,7 @@
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -203,6 +298,22 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"sliderTol",
+			"sliderTop",
+			"money",
+			"setActive",
+			"color",
+			"BaseColor",
+			"baseColor",
+			"BaseColor",
+			"turretFollow",
+			"mousePosition",
+			"my",
+			"mouse",
+			"CheckFire",
+			"GameController",
+			"Move",
+			"MouseMove",
 			"Image",
 			"item",
 			"pathfinding",
@@ -308,16 +419,124 @@
 		"selected_items":
 		[
 			[
+				"porta",
+				"Assets/PortActivation.cs"
+			],
+			[
+				"color",
+				"Assets/PlayerColor.cs"
+			],
+			[
+				"pickup",
+				"Assets/Scripts/PickupColor.cs"
+			],
+			[
+				"game",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"booty",
+				"Assets/BootyController.cs"
+			],
+			[
+				"coincol",
+				"Assets/CoinController.cs"
+			],
+			[
+				"entities",
+				"Assets/Scripts/Entities.cs"
+			],
+			[
+				"basic",
+				"Assets/Scripts/EnemyBasic.cs"
+			],
+			[
+				"health",
+				"Assets/Scripts/HealthController.cs"
+			],
+			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"fireob",
+				"Assets/Scripts/FireObjectController.cs"
+			],
+			[
+				"dagger",
+				"Assets/DaggerController.cs"
+			],
+			[
+				"food",
+				"Assets/FoodController.cs"
+			],
+			[
+				"car",
+				"Assets/CargoController.cs"
+			],
+			[
+				"hullcon",
+				"Assets/HullController.cs"
+			],
+			[
+				"player",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"enemy",
+				"Assets/Scripts/EnemyBasic.cs"
+			],
+			[
+				"cargocon",
+				"Assets/CargoController.cs"
+			],
+			[
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"cargoda",
+				"Assets/Scripts/CargoDagger.cs"
+			],
+			[
+				"t",
+				"Assets/Scripts/Timer.cs"
+			],
+			[
+				"cargo",
+				"Assets/Scripts/CargoFood.cs"
+			],
+			[
+				"foodcon",
+				"Assets/FoodController.cs"
+			],
+			[
+				"daggercon",
+				"Assets/DaggerController.cs"
+			],
+			[
+				"icar",
+				"Assets/Scripts/ICargo.cs"
+			],
+			[
+				"ifira",
+				"Assets/Scripts/IFirable.cs"
+			],
+			[
+				"controller",
+				"Assets/CargoController.cs"
+			],
+			[
+				"entiti",
+				"Assets/Scripts/Entities.cs"
+			],
+			[
 				"entit",
 				"Assets/Scripts/Entities.cs"
 			],
 			[
 				"icargo",
 				"Assets/Scripts/ICargo.cs"
-			],
-			[
-				"cargocon",
-				"Assets/CargoController.cs"
 			],
 			[
 				"cargofo",
@@ -332,22 +551,6 @@
 				"Assets/Scripts/ICargo.cs"
 			],
 			[
-				"icar",
-				"Assets/Scripts/ICargo.cs"
-			],
-			[
-				"pickup",
-				"Assets/PickupColor.cs"
-			],
-			[
-				"entities",
-				"Assets/Scripts/Entities.cs"
-			],
-			[
-				"cargo",
-				"Assets/Scripts/CargoObject.cs"
-			],
-			[
 				"uiim",
 				"Assets/Scripts/UIImageColor.cs"
 			],
@@ -360,20 +563,8 @@
 				"Assets/UIPanel.cs"
 			],
 			[
-				"game",
-				"Assets/Scripts/GameController.cs"
-			],
-			[
-				"basic",
-				"Assets/Scripts/EnemyBasic.cs"
-			],
-			[
 				"timer",
 				"Assets/Scripts/Timer.cs"
-			],
-			[
-				"enemy",
-				"Assets/Scripts/EnemyBasic.cs"
 			],
 			[
 				"test",
@@ -382,22 +573,6 @@
 			[
 				"testg",
 				"Assets/TestGeometry.cs"
-			],
-			[
-				"gamecon",
-				"Assets/Scripts/GameController.cs"
-			],
-			[
-				"color",
-				"Assets/Scripts/BoatmanColors.cs"
-			],
-			[
-				"playercon",
-				"Assets/Scripts/PlayerController.cs"
-			],
-			[
-				"player",
-				"Assets/Scripts/PlayerController.cs"
 			],
 			[
 				"water",
@@ -441,10 +616,6 @@
 			],
 			[
 				"healthc",
-				"Assets/Scripts/HealthController.cs"
-			],
-			[
-				"health",
 				"Assets/Scripts/HealthController.cs"
 			],
 			[
@@ -516,8 +687,8 @@
 	{
 		"_vintageous_last_buffer_search": "Attackrecoverytim",
 		"_vintageous_last_buffer_search_command": "vi_slash",
-		"_vintageous_last_char_search_command": "vi_f",
-		"_vintageous_last_character_search": "1",
+		"_vintageous_last_char_search_command": "vi_t",
+		"_vintageous_last_character_search": "f",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{

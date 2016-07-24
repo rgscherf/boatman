@@ -2,6 +2,9 @@
 using System.Collections;
 
 public class CargoDagger : ICargo {
+    public int price {
+        get { return 1;}
+    }
     public float cargoFireTimer {
         get {
             return 0.35f;

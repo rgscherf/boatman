@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour {
     Dictionary<int, ICargo> cargo;
     Dictionary<int, Timer> cargoFireCooldowns;
 
+
     void Update() {
         foreach (var item in cargoFireCooldowns) {
             item.Value.Tick(Time.deltaTime);
@@ -24,12 +25,16 @@ public class GameController : MonoBehaviour {
 
         MapInit();
 
+        sliderTop = GameObject.Find("sliderTop");
+        sliderBottom = GameObject.Find("sliderBottom");
+        sliderRight = GameObject.Find("sliderRight");
+        sliderLeft = GameObject.Find("sliderLeft");
+
         cargo = new Dictionary<int, ICargo>();
         cargoFireCooldowns = new Dictionary<int, Timer>();
 
-        AddCargo(new CargoFood());
         AddCargo(new CargoDagger());
-
+        AddCargo(new CargoFood());
     }
 
     bool AddCargo(ICargo item) {
@@ -47,6 +52,68 @@ public class GameController : MonoBehaviour {
             // throws exception when First() cannot return a value
             return false;
         }
+    }
+
+    //////////////////
+    // PORT ACTIVATION
+    //////////////////
+    GameObject sliderTop;
+    GameObject sliderBottom;
+    GameObject sliderRight;
+    GameObject sliderLeft;
+    // slider positions:
+
+    //// top activation
+    // bot start    19.9, -35.7
+    // bot end      19.9, -9.7
+    // right start  65.4, -1.7
+    // right end    31.9, -1.7
+
+    //// bottom activation
+    // top start    19.9, 31.7
+    // top end      19.9, 13.4
+    // left start   -26.2, 4.6
+    // left end     11.5, 4.6
+    // bot start    19.9, -25.9
+
+    float slideTime = 1f;
+    string activePort;
+
+    public void ActivatePort(string port) {
+        activePort = port;
+        if (port == "top") {
+            TweenHelper(sliderBottom, new Vector3(19.9f, -9.7f, -5f));
+            TweenHelper(sliderRight, new Vector3(31.9f, -1.7f, -5f));
+        } else {
+            TweenHelper(sliderTop, new Vector3(19.9f, 13.4f, -5f));
+            TweenHelper(sliderLeft, new Vector3(11.5f, 4.6f, -5f));
+            TweenHelper(sliderBottom, new Vector3(19.9f, -25.9f, -5f));
+        }
+        Invoke("DestroyObjects", slideTime);
+        Invoke("ActivatePortUI", slideTime);
+    }
+
+    void ActivatePortUI() {
+
+    }
+
+    void DestroyObjects() {
+        var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var e in enemies) {
+            Object.Destroy(e);
+        }
+        var geog = GameObject.FindGameObjectsWithTag("Geometry");
+        foreach (var g in geog) {
+            Object.Destroy(g);
+        }
+    }
+
+    public void DeactivatePort() {
+    }
+
+    void TweenHelper(GameObject obj, Vector3 vec) {
+        LeanTween.move(obj, vec, slideTime).setEase(LeanTweenType.easeInQuad);
+
     }
 
 

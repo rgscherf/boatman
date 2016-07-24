@@ -84,6 +84,12 @@ public class EnemyBasic : MonoBehaviour {
         }
     }
 
+    void Die() {
+        var entities = GameObject.Find("Entities").GetComponent<Entities>();
+        Instantiate(entities.coin, transform.position, Quaternion.identity);
+        Object.Destroy(gameObject);
+    }
+
     void Update() {
         if (!begunPathfinding) {
             CheckPathfindingActivation();

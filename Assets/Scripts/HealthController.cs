@@ -42,11 +42,7 @@ public class HealthController : MonoBehaviour {
             }
         }
         if (currentHealth <= 0) {
-            if (go.tag == "Player") {
-                go.GetComponent<PlayerController>().Die();
-            } else {
-                Object.Destroy(go);
-            }
+            SendMessage("Die");
         }
     }
 

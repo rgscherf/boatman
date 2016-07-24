@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -6,6 +7,7 @@ public class GameController : MonoBehaviour {
 
     Entities entities;
     GameObject mapObjects;
+    GameObject merchantUI;
 
     Dictionary<int, ICargo> cargo;
     Dictionary<int, Timer> cargoFireCooldowns;
@@ -18,6 +20,11 @@ public class GameController : MonoBehaviour {
     }
 
     // Use this for initialization
+    void Awake() {
+        merchantUI = GameObject.Find("MerchantUI");
+        merchantUI.SetActive(false);
+    }
+
     void Start () {
         entities = GameObject.Find("Entities").GetComponent<Entities>();
         mapObjects = GameObject.Find("MapObjects");
@@ -34,6 +41,7 @@ public class GameController : MonoBehaviour {
         cargoFireCooldowns = new Dictionary<int, Timer>();
 
         AddCargo(new CargoDagger());
+        AddCargo(new CargoFood());
         AddCargo(new CargoFood());
     }
 
@@ -65,36 +73,49 @@ public class GameController : MonoBehaviour {
 
     //// top activation
     // bot start    19.9, -35.7
-    // bot end      19.9, -9.7
     // right start  65.4, -1.7
-    // right end    31.9, -1.7
 
     //// bottom activation
     // top start    19.9, 31.7
-    // top end      19.9, 13.4
     // left start   -26.2, 4.6
-    // left end     11.5, 4.6
     // bot start    19.9, -25.9
 
-    float slideTime = 1f;
+    float slideTime = 0.5f;
     string activePort;
+    bool inPort;
 
     public void ActivatePort(string port) {
         activePort = port;
+        inPort = true;
         if (port == "top") {
             TweenHelper(sliderBottom, new Vector3(19.9f, -9.7f, -5f));
             TweenHelper(sliderRight, new Vector3(31.9f, -1.7f, -5f));
         } else {
-            TweenHelper(sliderTop, new Vector3(19.9f, 13.4f, -5f));
-            TweenHelper(sliderLeft, new Vector3(11.5f, 4.6f, -5f));
-            TweenHelper(sliderBottom, new Vector3(19.9f, -25.9f, -5f));
+            TweenHelper(sliderTop, new Vector3(19.9f, 14.54f, -5f));
+            TweenHelper(sliderLeft, new Vector3(8.83f, 4.6f, -5f));
+            TweenHelper(sliderBottom, new Vector3(19.9f, -25.6f, -5f));
         }
         Invoke("DestroyObjects", slideTime);
         Invoke("ActivatePortUI", slideTime);
+        GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+    }
+
+    public void ReceiveClickEvent(int holdSlot) {
+        Debug.Log(string.Format("Event Received! {0}", holdSlot));
     }
 
     void ActivatePortUI() {
-
+        var oldTownWelcome = new[] {"OLD TOWN WELCOMES YOU",
+                                    "A FINE DAY IN OLD TOWN",
+                                   };
+        var ratTownWelcome = new[] {"WATCH YERSELF IN RAT TOWN",
+                                    "THIS IS RAT TOWN, STRANGER"
+                                   };
+        var welcome = activePort == "top"
+                      ? oldTownWelcome[Random.Range(0, oldTownWelcome.Length)]
+                      : ratTownWelcome[Random.Range(0, ratTownWelcome.Length)];
+        merchantUI.SetActive(true);
+        GameObject.Find("BuyWelcome").GetComponent<Text>().text = welcome;
     }
 
     void DestroyObjects() {
@@ -113,7 +134,6 @@ public class GameController : MonoBehaviour {
 
     void TweenHelper(GameObject obj, Vector3 vec) {
         LeanTween.move(obj, vec, slideTime).setEase(LeanTweenType.easeInQuad);
-
     }
 
 

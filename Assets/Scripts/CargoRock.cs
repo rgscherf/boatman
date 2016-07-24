@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class CargoRock : ICargo {
@@ -15,7 +16,7 @@ public class CargoRock : ICargo {
     }
     public string cargoBody {
         get {
-            return "Useless. Sell in Old Town for 2.";
+            return String.Format("Useless. Sell in Old Town for {0}.", sellprice);
         }
     }
     public global::CargoType cargoType {
@@ -30,7 +31,7 @@ public class CargoRock : ICargo {
     }
     public int sellprice {
         get {
-            return 2;
+            return 3;
         }
     }
     public UnityEngine.GameObject cargoFireObject {

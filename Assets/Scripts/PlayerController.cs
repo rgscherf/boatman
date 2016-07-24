@@ -18,8 +18,9 @@ public class PlayerController : MonoBehaviour {
     bool moveMouseDownPreviousFrame;
     GameObject paddleLine;
     Vector3 paddleStart;
-    const float maxDistance = 20f;
+    const float maxDistance = 7f;
     const float paddleForceMod = 10f;
+    const float maxSpeed = 10f;
 
     // Use this for initialization
     void Start () {
@@ -52,6 +53,11 @@ public class PlayerController : MonoBehaviour {
             if (current == 0) { return; }
 
             if (gameController.SelectedCanFire(current)) {
+                // special handling for cannoner
+                if (gameController.SelectedFireType(current) == CargoType.Cannoner) {
+                    if (!CanDebitBooty(2)) { return; }
+                    DebitBooty(2);
+                }
                 var fireObject = gameController.SelectedFireObject(current);
                 var go = (GameObject) Instantiate(
                              fireObject,
@@ -166,6 +172,7 @@ public class PlayerController : MonoBehaviour {
         var dist = Mathf.Max(maxDistance, Vector3.Distance(paddleStart, mousepos));
         var dir = Vector3.ClampMagnitude(paddleStart - mousepos, dist);
         rigid.AddForce(dir * paddleForceMod);
+        rigid.velocity = Vector2.ClampMagnitude(rigid.velocity, maxSpeed);
 
         Object.Destroy(paddleLine);
         moveMouseDownPreviousFrame = false;

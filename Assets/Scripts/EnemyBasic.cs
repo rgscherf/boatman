@@ -86,7 +86,11 @@ public class EnemyBasic : MonoBehaviour {
 
     void Die() {
         var entities = GameObject.Find("Entities").GetComponent<Entities>();
-        Instantiate(entities.coin, transform.position, Quaternion.identity);
+        if (Random.value < 0.75f) {
+            Instantiate(entities.coin, transform.position, Quaternion.identity);
+        } else {
+            Instantiate(entities.remains, transform.position, Quaternion.identity);
+        }
         Object.Destroy(gameObject);
     }
 

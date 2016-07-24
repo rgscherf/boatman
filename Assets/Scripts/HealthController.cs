@@ -46,6 +46,13 @@ public class HealthController : MonoBehaviour {
         }
     }
 
+    public void HealDamage(int amt) {
+        currentHealth = Mathf.Min(currentHealth + amt, maxHealth);
+        if (gameObject.tag == "Player") {
+            gameObject.GetComponent<PlayerController>().UpdateHealth(currentHealth);
+        }
+    }
+
     /////////////
     // FLICKERING
     // sprites flicker after taking damage (and maybe for other reasons??)

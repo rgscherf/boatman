@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+using System;
 
 public class CargoFood : ICargo {
-    public int sellprice {get {return 5;}}
+    public int sellprice {get {return 6;}}
     public int price {
         get { return 2; }
     }
@@ -31,7 +30,7 @@ public class CargoFood : ICargo {
     }
     public string cargoBody {
         get {
-            return "Sell for 5 in Rat Town. Can use as cannon fodder.";
+            return String.Format("Sell for {0} in Rat Town. Can use as cannon fodder.", sellprice);
         }
     }
     public CargoType cargoType {

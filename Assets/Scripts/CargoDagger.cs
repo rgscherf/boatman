@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class CargoDagger : ICargo {
@@ -29,7 +30,7 @@ public class CargoDagger : ICargo {
     }
     public string cargoBody {
         get {
-            return "Weak melee weapon with short range. Sell for 1.";
+            return String.Format("Weak melee weapon with short range. Sell for {0}.", sellprice);
         }
     }
     public CargoType cargoType {

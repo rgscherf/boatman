@@ -1,48 +1,47 @@
 ﻿using UnityEngine;
-using System;
+using System.Collections;
 
-public class CargoSword : ICargo {
+public class CargoEmpty : ICargo {
     #region ICargo implementation
     public UnityEngine.Sprite cargoImage {
         get {
-            return GameObject.Find("Entities").GetComponent<Entities>().cargoSwordSprite;
+            return GameObject.Find("Entities").GetComponent<Entities>().cargoEmptySprite;
         }
     }
     public string cargoTitle {
         get {
-            return "Grtswrd";
+            return "Empty";
         }
     }
     public string cargoBody {
         get {
-            return String.Format("Ultimate melee weapon. Sell for {0} in Rat Town.", sellprice);
+            return "";
         }
     }
     public global::CargoType cargoType {
         get {
-            return CargoType.Sword;
+            return CargoType.Empty;
         }
     }
     public int price {
         get {
-            return 15;
+            return 0;
         }
     }
     public int sellprice {
         get {
-            return 25;
+            return 0;
         }
     }
     public UnityEngine.GameObject cargoFireObject {
         get {
-            return GameObject.Find("Entities").GetComponent<Entities>().cargoSwordObject;
+            return GameObject.Find("Entities").GetComponent<Entities>().emptyObject;
         }
     }
     public float cargoFireTimer {
         get {
-            return 1f;
+            return 9999;
         }
     }
     #endregion
-
 }

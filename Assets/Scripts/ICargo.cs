@@ -3,9 +3,13 @@ using UnityEngine.UI;
 
 public enum CargoType {Food,
                        None,
+                       Empty,
+                       Remains,
+                       Healing,
                        Dagger,
                        Rock,
                        Sword,
+                       Cannoner,
                       }
 
 public interface ICargo {

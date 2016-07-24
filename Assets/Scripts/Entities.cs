@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Entities : MonoBehaviour {
 
-    public Sprite[] rocks;
-    public GameObject rockObject;
-    public GameObject paddleLine;
+    //////////////////
+    // CARGO HANDLING
+    //////////////////
 
     public GameObject weaponDagger;
     public GameObject cargoSupplies;
@@ -22,12 +22,41 @@ public class Entities : MonoBehaviour {
     public Sprite cargoSwordSprite;
     public GameObject cargoSwordObject;
 
+    public Sprite cargoEmptySprite;
+
+    public Sprite cargoHealingSprite;
+    public GameObject cargoHealingObject;
+
+    public Sprite cargoRemainsSprite;
+
+    public Sprite cargoCannonerSprite;
+    public GameObject cargoCannonerObject;
+
+
+    //////////////
+    // MAP OBJECTS
+    //////////////
+
     public GameObject coin;
+    public GameObject remains;
 
     public GameObject mapRockSmall;
     public GameObject mapRockLarge;
     public GameObject basicEnemy;
 
+
+    /////////////////////
+    // STATIC MAP OBJECTS
+    /////////////////////
+
+    public Sprite[] rocks;
+    public GameObject rockObject;
+    public GameObject paddleLine;
+
+
+    //////////
+    // PALETTE
+    //////////
 
     public IPalette palette;
     void Awake() {

@@ -30,7 +30,7 @@ public class ShopController : MonoBehaviour {
                 inventorySlots[i].transform.FindChild("Image").GetComponent<Image>().sprite = inventory[i].cargoImage;
                 inventorySlots[i].transform.FindChild("Title").GetComponent<Text>().text = inventory[i].cargoTitle;
                 inventorySlots[i].transform.FindChild("Body").GetComponent<Text>().text = inventory[i].cargoBody;
-                inventorySlots[i].transform.FindChild("Price").GetComponent<Text>().text = inventory[i].price.ToString();
+                inventorySlots[i].transform.FindChild("Price").GetComponent<Text>().text = inventory[i].price == 0 ? "--" : inventory[i].price.ToString();
             } else {
                 inventorySlots[i].transform.FindChild("Image").GetComponent<Image>().sprite = empty;
                 inventorySlots[i].transform.FindChild("Title").GetComponent<Text>().text = "Empty";

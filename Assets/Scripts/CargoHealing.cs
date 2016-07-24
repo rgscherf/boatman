@@ -1,41 +1,42 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System;
 
-public class CargoSword : ICargo {
+public class CargoHealing : ICargo {
     #region ICargo implementation
     public UnityEngine.Sprite cargoImage {
         get {
-            return GameObject.Find("Entities").GetComponent<Entities>().cargoSwordSprite;
+            return GameObject.Find("Entities").GetComponent<Entities>().cargoHealingSprite;
         }
     }
     public string cargoTitle {
         get {
-            return "Grtswrd";
+            return "Repair Kit";
         }
     }
     public string cargoBody {
         get {
-            return String.Format("Ultimate melee weapon. Sell for {0} in Rat Town.", sellprice);
+            return String.Format("Repair hull for 3, one use. Sell for {0}.", sellprice);
         }
     }
     public global::CargoType cargoType {
         get {
-            return CargoType.Sword;
+            return CargoType.Healing;
         }
     }
     public int price {
         get {
-            return 15;
+            return 6;
         }
     }
     public int sellprice {
         get {
-            return 25;
+            return 1;
         }
     }
     public UnityEngine.GameObject cargoFireObject {
         get {
-            return GameObject.Find("Entities").GetComponent<Entities>().cargoSwordObject;
+            return GameObject.Find("Entities").GetComponent<Entities>().cargoHealingObject;
         }
     }
     public float cargoFireTimer {

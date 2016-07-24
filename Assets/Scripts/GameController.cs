@@ -46,9 +46,16 @@ public class GameController : MonoBehaviour {
         cargo = new Dictionary<int, ICargo>();
         cargoFireCooldowns = new Dictionary<int, Timer>();
 
+
+        // INITIAL CARGO LOADOUT
+
         AddCargo(new CargoDagger());
         AddCargo(new CargoFood());
+
+        // SPAWN MAP OBJECTS
+
         PlaceObjects();
+
     }
 
     void PlaceObjects() {
@@ -56,7 +63,7 @@ public class GameController : MonoBehaviour {
         maps.Reify(map, entities);
     }
 
-    bool CanAddCargo() {
+    public bool CanAddCargo() {
         // nondestructive check of cargo
         // for testing buy transactions
         try {
@@ -70,7 +77,7 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    bool AddCargo(ICargo item) {
+    public bool AddCargo(ICargo item) {
         // try to add cargo to hold.
         // returns true if cargo added, false otherwise
         try {
@@ -91,19 +98,23 @@ public class GameController : MonoBehaviour {
     // MERCHANT CONFIGS
     ///////////////////
 
-    ICargo[] MakeShopInventory(string port) {
+    ICargo[] MakeShopInventory(Port port) {
         ICargo[] basicCargo = {
-            new CargoDagger()
+            new CargoDagger(),
+            new CargoEmpty(),
+            new CargoEmpty(),
         };
         ICargo[] oldTownCargo = {
             new CargoSword(),
             new CargoFood(),
+            new CargoHealing(),
         };
         ICargo[] ratTownCargo = {
-            new CargoDagger(),
+            new CargoHealing(),
             new CargoRock(),
+            new CargoCannoner(),
         };
-        ICargo[] res = port == "top"
+        ICargo[] res = port == Port.Top
                        ? basicCargo.Concat(oldTownCargo).ToArray()
                        : basicCargo.Concat(ratTownCargo).ToArray();
         const int numItems = 3;
@@ -124,13 +135,16 @@ public class GameController : MonoBehaviour {
     GameObject sliderLeft;
 
     float slideTime = 0.5f;
-    string activePort;
+    Port activePort;
+    bool everVisitedPort;
     public bool inPort;
 
-    public void ActivatePort(string port) {
+    public void ActivatePort(Port port) {
+        if (everVisitedPort && port == activePort) { return; }
+        if (!everVisitedPort) { everVisitedPort = true; }
         activePort = port;
         inPort = true;
-        if (port == "top") {
+        if (port == Port.Top) {
             TweenHelper(sliderBottom, new Vector3(19.9f, -9.7f, -5f));
             TweenHelper(sliderRight, new Vector3(31.9f, -1.7f, -5f));
         } else {
@@ -145,6 +159,9 @@ public class GameController : MonoBehaviour {
 
 
     void ActivatePortUI() {
+        ColorDockObject(entities.palette.player, "dock-topleft");
+        ColorDockObject(entities.palette.player, "dock-bottomright");
+
         // greeting message
         var oldTownWelcome = new[] {"OLD TOWN WELCOMES YOU.",
                                     "A FINE DAY IN OLD TOWN.",
@@ -156,7 +173,7 @@ public class GameController : MonoBehaviour {
                                     "WATCH YOUR BACK.",
                                     "THERE ARE BAD THINGS IN THE FOREST."
                                    };
-        var welcome = activePort == "top"
+        var welcome = activePort == Port.Top
                       ? oldTownWelcome[Random.Range(0, oldTownWelcome.Length)]
                       : ratTownWelcome[Random.Range(0, ratTownWelcome.Length)];
 
@@ -179,16 +196,18 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public void DeactivatePort(string port) {
+    public void DeactivatePort(Port port) {
         if (!inPort) { return; }
         inPort = false;
-        if (port == "top") {
+        if (port == Port.Top) {
             TweenHelper(sliderBottom, new Vector3(19.9f, -35.7f, -5f));
             TweenHelper(sliderRight, new Vector3(65.4f, -1.7f, -5f));
+            ColorDockObject(entities.palette.geometry, "dock-topleft");
         } else {
             TweenHelper(sliderTop, new Vector3(19.9f, 32f, -5f));
             TweenHelper(sliderLeft, new Vector3(-26.2f, 4.6f, -5f));
             TweenHelper(sliderBottom, new Vector3(19.9f, -35.7f, -5f));
+            ColorDockObject(entities.palette.geometry, "dock-bottomright");
         }
         merchantUI.SetActive(false);
         PlaceObjects();
@@ -198,12 +217,38 @@ public class GameController : MonoBehaviour {
         LeanTween.move(obj, vec, slideTime).setEase(LeanTweenType.easeInQuad);
     }
 
+    ////////////////////
+    // FIRING OPERATIONS
+    ////////////////////
+
+    public void FireCleanup(int index) {
+        switch (cargo[index].cargoType) {
+            case CargoType.Food:
+                RemoveCargo(index);
+                break;
+            case CargoType.Healing:
+                RemoveCargo(index);
+                break;
+            default:
+                cargoFireCooldowns[index].Reset();
+                break;
+        }
+    }
+
+    public GameObject SelectedFireObject(int index) {
+        return cargo[index].cargoFireObject;
+    }
+    public CargoType SelectedFireType(int index) {
+        return cargo[index].cargoType;
+    }
+    public bool SelectedCanFire(int index) {
+        return cargoFireCooldowns.ContainsKey(index) ? cargoFireCooldowns[index].Check() : false;
+    }
 
 
-
-//////////////////////
-// MERCHANT OPERATIONS
-//////////////////////
+    //////////////////////
+    // MERCHANT OPERATIONS
+    //////////////////////
     void RemoveCargo(int slot) {
         if (cargo.ContainsKey(slot)) {
             cargo.Remove(slot);
@@ -214,26 +259,28 @@ public class GameController : MonoBehaviour {
 
     public void ReceiveCargoClick(int holdslot) {
         if (!inPort || !cargo.ContainsKey(holdslot)) { return; }
-        var price = cargo[holdslot].price;
+        var sellprice = cargo[holdslot].sellprice;
         switch (cargo[holdslot].cargoType) {
-            case CargoType.Food:
-                if (activePort == "bottom") {
-                    player.ReceiveBooty(price);
-                    RemoveCargo(holdslot);
-                }
-                break;
             case CargoType.Rock:
-                if (activePort == "top") {
-                    player.ReceiveBooty(price);
+                if (activePort == Port.Top) {
+                    player.ReceiveBooty(sellprice);
                     RemoveCargo(holdslot);
                 }
                 break;
-            case CargoType.Dagger:
-                player.ReceiveBooty(price);
-                RemoveCargo(holdslot);
+            case CargoType.Food:
+                if (activePort == Port.Bottom) {
+                    player.ReceiveBooty(sellprice);
+                    RemoveCargo(holdslot);
+                }
                 break;
             case CargoType.Sword:
-                player.ReceiveBooty(price);
+                if (activePort == Port.Bottom) {
+                    player.ReceiveBooty(sellprice);
+                    RemoveCargo(holdslot);
+                }
+                break;
+            default:
+                player.ReceiveBooty(sellprice);
                 RemoveCargo(holdslot);
                 break;
         }
@@ -256,7 +303,8 @@ public class GameController : MonoBehaviour {
     /////////////
 
     void MapInit() {
-        SetupStaticMapObjects();
+        ColorDockObject(entities.palette.player, "dock-topleft");
+        ColorDockObject(entities.palette.player, "dock-bottomright");
         foreach (var y in Enumerable.Range(4, 16)) {
             MakeRock(40, y);
         }
@@ -271,17 +319,12 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    void SetupStaticMapObjects() {
-        var targetColor = entities.palette.player;
-        var staticObjects = new[] {"dock-topleft", "dock-bottomright"};
-
-        foreach (var s in staticObjects) {
-            var d = GameObject.Find(s);
-            for (int i = 0; i < d.transform.childCount; i++) {
-                var childSpr = d.transform.GetChild(i).GetComponent<SpriteRenderer>();
-                if (childSpr) {
-                    childSpr.color = targetColor;
-                }
+    void ColorDockObject(Color targetColor, string targetObject) {
+        var d = GameObject.Find(targetObject);
+        for (int i = 0; i < d.transform.childCount; i++) {
+            var childSpr = d.transform.GetChild(i).GetComponent<SpriteRenderer>();
+            if (childSpr) {
+                childSpr.color = targetColor;
             }
         }
     }
@@ -292,26 +335,4 @@ public class GameController : MonoBehaviour {
         go.GetComponent<SpriteRenderer>().color = entities.palette.geometry;
         go.transform.parent = mapObjects.transform;
     }
-
-    public GameObject SelectedFireObject(int index) {
-        return cargo[index].cargoFireObject;
-    }
-    public CargoType SelectedFireType(int index) {
-        return cargo[index].cargoType;
-    }
-    public bool SelectedCanFire(int index) {
-        return cargoFireCooldowns.ContainsKey(index) ? cargoFireCooldowns[index].Check() : false;
-    }
-    public void FireCleanup(int index) {
-        if (cargo[index].cargoType == CargoType.Food) {
-            RemoveCargo(index);
-        } else {
-            cargoFireCooldowns[index].Reset();
-        }
-    }
-
-
-
-
-
 }

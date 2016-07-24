@@ -24,6 +24,10 @@ public class Entities : MonoBehaviour {
 
     public GameObject coin;
 
+    public GameObject mapRockSmall;
+    public GameObject mapRockLarge;
+    public GameObject basicEnemy;
+
 
     public IPalette palette;
     void Awake() {

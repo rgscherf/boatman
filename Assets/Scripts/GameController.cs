@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour {
     GameObject merchantUI;
     ShopController shop;
     PlayerController player;
+    Maps maps;
 
     Dictionary<int, ICargo> cargo;
     Dictionary<int, Timer> cargoFireCooldowns;
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour {
         merchantUI = GameObject.Find("MerchantUI");
         shop = GameObject.Find("Shop").GetComponent<ShopController>();
         merchantUI.SetActive(false);
+        maps = GetComponent<Maps>();
     }
 
     void Start () {
@@ -46,6 +48,12 @@ public class GameController : MonoBehaviour {
 
         AddCargo(new CargoDagger());
         AddCargo(new CargoFood());
+        PlaceObjects();
+    }
+
+    void PlaceObjects() {
+        var map = Maps.RandomMap();
+        maps.Reify(map, entities);
     }
 
     bool CanAddCargo() {
@@ -158,7 +166,7 @@ public class GameController : MonoBehaviour {
             TweenHelper(sliderBottom, new Vector3(19.9f, -35.7f, -5f));
         }
         merchantUI.SetActive(false);
-        // create objects?
+        PlaceObjects();
     }
 
     void TweenHelper(GameObject obj, Vector3 vec) {

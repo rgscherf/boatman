@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class CargoFood : ICargo {
-    public int sellprice {get {return 1;}}
+    public int sellprice {get {return 5;}}
     public int price {
         get { return 2; }
     }

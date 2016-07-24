@@ -10,6 +10,10 @@ public class ShopController : MonoBehaviour {
 
     void Awake() {
         inventory = new Dictionary<int, ICargo>();
+        MakeSlots();
+    }
+
+    void MakeSlots() {
         inventorySlots = new Dictionary<int, GameObject>();
         inventorySlots[1] = GameObject.Find("BuySlot1");
         inventorySlots[2] = GameObject.Find("BuySlot2");
@@ -17,6 +21,10 @@ public class ShopController : MonoBehaviour {
     }
 
     public void Repaint() {
+        if (inventorySlots == null) {
+            MakeSlots();
+        }
+
         for (var i = 1; i <= 3; i++) {
             if (inventory.ContainsKey(i)) {
                 inventorySlots[i].transform.FindChild("Image").GetComponent<Image>().sprite = inventory[i].cargoImage;
@@ -33,6 +41,9 @@ public class ShopController : MonoBehaviour {
     }
 
     public void Restock(ICargo[] newstock) {
+        if (inventory == null) {
+            inventory = new Dictionary<int, ICargo>();
+        }
         inventory.Clear();
         for (var i = 0; i <= 2; i++) {
             // remember that UI dicts are 1-indexed.

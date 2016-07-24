@@ -87,6 +87,34 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    ///////////////////
+    // MERCHANT CONFIGS
+    ///////////////////
+
+    ICargo[] MakeShopInventory(string port) {
+        ICargo[] basicCargo = {
+            new CargoDagger()
+        };
+        ICargo[] oldTownCargo = {
+            new CargoSword(),
+            new CargoFood(),
+        };
+        ICargo[] ratTownCargo = {
+            new CargoDagger(),
+            new CargoRock(),
+        };
+        ICargo[] res = port == "top"
+                       ? basicCargo.Concat(oldTownCargo).ToArray()
+                       : basicCargo.Concat(ratTownCargo).ToArray();
+        const int numItems = 3;
+        var fin = new List<ICargo>();
+        for (var i = 0; i < numItems; i++) {
+            var index = Random.Range(0, res.Length);
+            fin.Add(res[index]);
+        }
+        return fin.ToArray();
+    }
+
     //////////////////
     // PORT ACTIVATION
     //////////////////
@@ -117,11 +145,6 @@ public class GameController : MonoBehaviour {
 
 
     void ActivatePortUI() {
-        // shop inventory
-        var inventory = MakeShopInventory(activePort);
-        shop.Restock(inventory);
-
-
         // greeting message
         var oldTownWelcome = new[] {"OLD TOWN WELCOMES YOU.",
                                     "A FINE DAY IN OLD TOWN.",
@@ -140,6 +163,8 @@ public class GameController : MonoBehaviour {
 
 
         merchantUI.SetActive(true);
+        var inventory = MakeShopInventory(activePort);
+        shop.Restock(inventory);
         GameObject.Find("BuyWelcome").GetComponent<Text>().text = welcome;
     }
 
@@ -174,36 +199,6 @@ public class GameController : MonoBehaviour {
     }
 
 
-    ///////////////////
-    // MERCHANT CONFIGS
-    ///////////////////
-
-    ICargo[] MakeShopInventory(string port) {
-
-        ICargo[] basicCargo = {
-            new CargoDagger()
-        };
-        ICargo[] oldTownCargo = {
-            new CargoSword(),
-            new CargoFood(),
-        };
-        ICargo[] ratTownCargo = {
-            new CargoDagger(),
-            new CargoRock(),
-        };
-
-        ICargo[] res = port == "top"
-                       ? basicCargo.Concat(oldTownCargo).ToArray()
-                       : basicCargo.Concat(ratTownCargo).ToArray();
-
-        const int numItems = 3;
-        var fin = new List<ICargo>();
-        for (var i = 0; i < numItems; i++) {
-            var index = Random.Range(0, res.Length);
-            fin.Add(res[index]);
-        }
-        return fin.ToArray();
-    }
 
 
 //////////////////////

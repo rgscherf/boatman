@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour {
     Entities entities;
     GameObject mapObjects;
     GameObject merchantUI;
+    ShopController shop;
+    PlayerController player;
 
     Dictionary<int, ICargo> cargo;
     Dictionary<int, Timer> cargoFireCooldowns;
@@ -22,6 +24,7 @@ public class GameController : MonoBehaviour {
     // Use this for initialization
     void Awake() {
         merchantUI = GameObject.Find("MerchantUI");
+        shop = GameObject.Find("Shop").GetComponent<ShopController>();
         merchantUI.SetActive(false);
     }
 
@@ -29,6 +32,7 @@ public class GameController : MonoBehaviour {
         entities = GameObject.Find("Entities").GetComponent<Entities>();
         mapObjects = GameObject.Find("MapObjects");
         GameObject.Find("background").GetComponent<SpriteRenderer>().color = entities.palette.background;
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
 
         MapInit();
 
@@ -42,7 +46,20 @@ public class GameController : MonoBehaviour {
 
         AddCargo(new CargoDagger());
         AddCargo(new CargoFood());
-        AddCargo(new CargoFood());
+    }
+
+    bool CanAddCargo() {
+        // nondestructive check of cargo
+        // for testing buy transactions
+        try {
+            int slot = new[] {1, 2, 3, 4}
+            .Where(i => !cargo.ContainsKey(i))
+            .First();
+            return true;
+        } catch {
+            // throws exception when first() cannot return a value
+            return false;
+        }
     }
 
     bool AddCargo(ICargo item) {
@@ -57,7 +74,7 @@ public class GameController : MonoBehaviour {
             GameObject.Find("Cargo").GetComponent<CargoController>().Repaint(cargo);
             return true;
         } catch {
-            // throws exception when First() cannot return a value
+            // throws exception when first() cannot return a value
             return false;
         }
     }
@@ -69,20 +86,10 @@ public class GameController : MonoBehaviour {
     GameObject sliderBottom;
     GameObject sliderRight;
     GameObject sliderLeft;
-    // slider positions:
-
-    //// top activation
-    // bot start    19.9, -35.7
-    // right start  65.4, -1.7
-
-    //// bottom activation
-    // top start    19.9, 31.7
-    // left start   -26.2, 4.6
-    // bot start    19.9, -25.9
 
     float slideTime = 0.5f;
     string activePort;
-    bool inPort;
+    public bool inPort;
 
     public void ActivatePort(string port) {
         activePort = port;
@@ -100,20 +107,30 @@ public class GameController : MonoBehaviour {
         GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
     }
 
-    public void ReceiveClickEvent(int holdSlot) {
-        Debug.Log(string.Format("Event Received! {0}", holdSlot));
-    }
 
     void ActivatePortUI() {
-        var oldTownWelcome = new[] {"OLD TOWN WELCOMES YOU",
-                                    "A FINE DAY IN OLD TOWN",
+        // shop inventory
+        var inventory = MakeShopInventory(activePort);
+        shop.Restock(inventory);
+
+
+        // greeting message
+        var oldTownWelcome = new[] {"OLD TOWN WELCOMES YOU.",
+                                    "A FINE DAY IN OLD TOWN.",
+                                    "STOP BY THE TULIP FESTIVAL!",
+                                    "THE KING WISHES TO BUY EXOTIC FURS."
                                    };
-        var ratTownWelcome = new[] {"WATCH YERSELF IN RAT TOWN",
-                                    "THIS IS RAT TOWN, STRANGER"
+        var ratTownWelcome = new[] {"WATCH YERSELF IN RAT TOWN.",
+                                    "THIS IS RAT TOWN, STRANGER.",
+                                    "WATCH YOUR BACK.",
+                                    "THERE ARE BAD THINGS IN THE FOREST."
                                    };
         var welcome = activePort == "top"
                       ? oldTownWelcome[Random.Range(0, oldTownWelcome.Length)]
                       : ratTownWelcome[Random.Range(0, ratTownWelcome.Length)];
+
+
+
         merchantUI.SetActive(true);
         GameObject.Find("BuyWelcome").GetComponent<Text>().text = welcome;
     }
@@ -129,11 +146,105 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public void DeactivatePort() {
+    public void DeactivatePort(string port) {
+        if (!inPort) { return; }
+        inPort = false;
+        if (port == "top") {
+            TweenHelper(sliderBottom, new Vector3(19.9f, -35.7f, -5f));
+            TweenHelper(sliderRight, new Vector3(65.4f, -1.7f, -5f));
+        } else {
+            TweenHelper(sliderTop, new Vector3(19.9f, 32f, -5f));
+            TweenHelper(sliderLeft, new Vector3(-26.2f, 4.6f, -5f));
+            TweenHelper(sliderBottom, new Vector3(19.9f, -35.7f, -5f));
+        }
+        merchantUI.SetActive(false);
+        // create objects?
     }
 
     void TweenHelper(GameObject obj, Vector3 vec) {
         LeanTween.move(obj, vec, slideTime).setEase(LeanTweenType.easeInQuad);
+    }
+
+
+    ///////////////////
+    // MERCHANT CONFIGS
+    ///////////////////
+
+    ICargo[] MakeShopInventory(string port) {
+
+        ICargo[] basicCargo = {
+            new CargoDagger()
+        };
+        ICargo[] oldTownCargo = {
+            new CargoSword(),
+            new CargoFood(),
+        };
+        ICargo[] ratTownCargo = {
+            new CargoDagger(),
+            new CargoRock(),
+        };
+
+        ICargo[] res = port == "top"
+                       ? basicCargo.Concat(oldTownCargo).ToArray()
+                       : basicCargo.Concat(ratTownCargo).ToArray();
+
+        const int numItems = 3;
+        var fin = new List<ICargo>();
+        for (var i = 0; i < numItems; i++) {
+            var index = Random.Range(0, res.Length);
+            fin.Add(res[index]);
+        }
+        return fin.ToArray();
+    }
+
+
+//////////////////////
+// MERCHANT OPERATIONS
+//////////////////////
+    void RemoveCargo(int slot) {
+        if (cargo.ContainsKey(slot)) {
+            cargo.Remove(slot);
+            cargoFireCooldowns.Remove(slot);
+            GameObject.Find("Cargo").GetComponent<CargoController>().Repaint(cargo);
+        }
+    }
+
+    public void ReceiveCargoClick(int holdslot) {
+        if (!inPort || !cargo.ContainsKey(holdslot)) { return; }
+        var price = cargo[holdslot].price;
+        switch (cargo[holdslot].cargoType) {
+            case CargoType.Food:
+                if (activePort == "bottom") {
+                    player.ReceiveBooty(price);
+                    RemoveCargo(holdslot);
+                }
+                break;
+            case CargoType.Rock:
+                if (activePort == "top") {
+                    player.ReceiveBooty(price);
+                    RemoveCargo(holdslot);
+                }
+                break;
+            case CargoType.Dagger:
+                player.ReceiveBooty(price);
+                RemoveCargo(holdslot);
+                break;
+            case CargoType.Sword:
+                player.ReceiveBooty(price);
+                RemoveCargo(holdslot);
+                break;
+        }
+    }
+
+    public void ReceiveMerchantClick(int shopSlot) {
+        Debug.Log(string.Format("Received click at {0}", shopSlot));
+        if (!inPort || !shop.ContainsKey(shopSlot)) { return; }
+        int price = shop.GetPrice(shopSlot);
+        if (player.CanDebitBooty(price) && CanAddCargo()) {
+            player.DebitBooty(price);
+            var newItem = shop.GetItem(shopSlot);
+            AddCargo(newItem);
+        }
     }
 
 
@@ -190,11 +301,14 @@ public class GameController : MonoBehaviour {
     }
     public void FireCleanup(int index) {
         if (cargo[index].cargoType == CargoType.Food) {
-            cargo.Remove(index);
-            cargoFireCooldowns.Remove(index);
-            GameObject.Find("Cargo").GetComponent<CargoController>().Repaint(cargo);
+            RemoveCargo(index);
         } else {
             cargoFireCooldowns[index].Reset();
         }
     }
+
+
+
+
+
 }

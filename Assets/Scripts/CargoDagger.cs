@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class CargoDagger : ICargo {
+    public int sellprice {get {return 1;}}
     public int price {
         get { return 1;}
     }
@@ -28,7 +29,7 @@ public class CargoDagger : ICargo {
     }
     public string cargoBody {
         get {
-            return "Weak melee weapon with short range.";
+            return "Weak melee weapon with short range. Sell for 1.";
         }
     }
     public CargoType cargoType {

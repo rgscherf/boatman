@@ -2,7 +2,10 @@
 using UnityEngine.UI;
 
 public enum CargoType {Food,
+                       None,
                        Dagger,
+                       Rock,
+                       Sword,
                       }
 
 public interface ICargo {
@@ -11,6 +14,7 @@ public interface ICargo {
     string cargoBody {get;}
     CargoType cargoType {get;}
     int price {get;}
+    int sellprice {get;}
 
     GameObject cargoFireObject {get;}
     float cargoFireTimer {get;}

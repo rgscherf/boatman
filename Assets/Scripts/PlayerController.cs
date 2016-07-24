@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour {
     ///////////////
 
     void CheckFire() {
-        if (Input.GetAxisRaw("Fire1") == 1) {
+        if (Input.GetAxisRaw("Fire1") == 1 && !gameController.inPort) {
             var current = cargoController.currentSelection;
             if (current == 0) { return; }
 
@@ -82,6 +82,18 @@ public class PlayerController : MonoBehaviour {
     ///////////////////
     // BOOTY OPERATIONS
     ///////////////////
+
+    public bool CanDebitBooty(int amt) {
+        return booty >= amt;
+    }
+    public bool DebitBooty(int amt) {
+        if (booty >= amt) {
+            booty -= amt;
+            bootyController.Repaint(booty);
+            return true;
+        }
+        return false;
+    }
 
     public void ReceiveBooty(int amt) {
         booty += amt;

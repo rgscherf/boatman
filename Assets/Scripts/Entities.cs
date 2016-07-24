@@ -16,7 +16,14 @@ public class Entities : MonoBehaviour {
     public Sprite cargoDaggerSprite;
     public GameObject cargoDaggerObject;
 
+    public Sprite cargoRockSprite;
+    public GameObject emptyObject;
+
+    public Sprite cargoSwordSprite;
+    public GameObject cargoSwordObject;
+
     public GameObject coin;
+
 
     public IPalette palette;
     void Awake() {

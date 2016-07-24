@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"Vect",
+				"Vector2"
+			],
+			[
+				"hold",
+				"holdSlot"
+			],
+			[
 				"dist",
 				"distFromTop"
 			],
@@ -225,6 +233,14 @@
 	},
 	"file_history":
 	[
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/UIImageColor.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/UITextColor.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/UIImageColorShop.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/UITextColorShop.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/ICargo.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoFood.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/FoodController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoDagger.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PickupColor.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/PlayerColor.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/BootyController.cs",
@@ -237,17 +253,13 @@
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/HealthController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/CargoController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/GameController.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoDagger.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/FoodController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Timer.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoFood.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/ICargo.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/IFirable.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/BoatmanColors.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/cargoFood.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/PickupColor.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoObject.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/UIImageColor.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/UITextColor.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/UIPanel.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/TestGeometry.cs",
@@ -298,6 +310,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"destroy",
+			"findgameobjectswithtag",
+			"gameobject",
+			", ",
+			",",
+			"easeOutQuad",
 			"sliderTol",
 			"sliderTop",
 			"money",
@@ -419,12 +437,48 @@
 		"selected_items":
 		[
 			[
-				"porta",
-				"Assets/PortActivation.cs"
+				"shop",
+				"Assets/Scripts/UITextColorShop.cs"
+			],
+			[
+				"uiimage",
+				"Assets/Scripts/UIImageColorShop.cs"
+			],
+			[
+				"ui",
+				"Assets/Scripts/UIImageColor.cs"
+			],
+			[
+				"uitextsh",
+				"Assets/Scripts/UITextColorShop.cs"
 			],
 			[
 				"color",
-				"Assets/PlayerColor.cs"
+				"Assets/Scripts/UITextColor.cs"
+			],
+			[
+				"cargofoo",
+				"Assets/Scripts/CargoFood.cs"
+			],
+			[
+				"food",
+				"Assets/Scripts/FoodController.cs"
+			],
+			[
+				"dagger",
+				"Assets/Scripts/CargoDagger.cs"
+			],
+			[
+				"ic",
+				"Assets/Scripts/ICargo.cs"
+			],
+			[
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"porta",
+				"Assets/PortActivation.cs"
 			],
 			[
 				"pickup",
@@ -463,14 +517,6 @@
 				"Assets/Scripts/FireObjectController.cs"
 			],
 			[
-				"dagger",
-				"Assets/DaggerController.cs"
-			],
-			[
-				"food",
-				"Assets/FoodController.cs"
-			],
-			[
 				"car",
 				"Assets/CargoController.cs"
 			],
@@ -489,10 +535,6 @@
 			[
 				"cargocon",
 				"Assets/CargoController.cs"
-			],
-			[
-				"gamecon",
-				"Assets/Scripts/GameController.cs"
 			],
 			[
 				"cargoda",
@@ -545,10 +587,6 @@
 			[
 				"cargof",
 				"Assets/Scripts/cargoFood.cs"
-			],
-			[
-				"ic",
-				"Assets/Scripts/ICargo.cs"
 			],
 			[
 				"uiim",
@@ -688,7 +726,7 @@
 		"_vintageous_last_buffer_search": "Attackrecoverytim",
 		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_last_char_search_command": "vi_t",
-		"_vintageous_last_character_search": "f",
+		"_vintageous_last_character_search": "\"",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{

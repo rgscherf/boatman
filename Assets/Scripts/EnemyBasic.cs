@@ -128,4 +128,8 @@ public class EnemyBasic : MonoBehaviour {
             attackCooldownTimer = new Timer(attackCooldown);
         }
     }
+
+    public void TookDamage() {
+        Camera.main.GetComponent<CameraShaker>().Shake(0.1f, 0.05f);
+    }
 }

@@ -80,6 +80,10 @@ public class PlayerController : MonoBehaviour {
         hullController.Repaint(currentHealth);
     }
 
+    public void TookDamage() {
+        Camera.main.GetComponent<CameraShaker>().Shake(0.5f, 0.25f);
+    }
+
     public void Die() {
         Object.Destroy(gameObject);
     }

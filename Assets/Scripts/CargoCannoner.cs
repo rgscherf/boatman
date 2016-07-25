@@ -25,12 +25,12 @@ public class CargoCannoner : ICargo {
     }
     public int price {
         get {
-            return 0;
+            return Entities.Price(CargoType.Cannoner);
         }
     }
     public int sellprice {
         get {
-            return 0;
+            return Entities.SellPrice(CargoType.Cannoner);
         }
     }
     public UnityEngine.GameObject cargoFireObject {

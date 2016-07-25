@@ -25,12 +25,12 @@ public class CargoSword : ICargo {
     }
     public int price {
         get {
-            return 15;
+            return Entities.Price(CargoType.Sword);
         }
     }
     public int sellprice {
         get {
-            return 25;
+            return Entities.SellPrice(CargoType.Sword);
         }
     }
     public UnityEngine.GameObject cargoFireObject {

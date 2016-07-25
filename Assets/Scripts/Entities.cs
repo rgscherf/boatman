@@ -55,6 +55,61 @@ public class Entities : MonoBehaviour {
 
 
     //////////
+    // ECONOMY
+    //////////
+
+    public static int Price(CargoType t) {
+        switch (t) {
+            case CargoType.Food:
+                return 2;
+            case CargoType.None:
+                return 0;
+            case CargoType.Empty:
+                return 0;
+            case CargoType.Remains:
+                return 0;
+            case CargoType.Healing:
+                return 6;
+            case CargoType.Dagger:
+                return 1;
+            case CargoType.Rock:
+                return 0;
+            case CargoType.Sword:
+                return 15;
+            case CargoType.Cannoner:
+                return 0;
+            default:
+                return 99;
+        }
+    }
+
+    public static int SellPrice(CargoType t) {
+        switch (t) {
+            case CargoType.Food:
+                return 6;
+            case CargoType.None:
+                return 0;
+            case CargoType.Empty:
+                return 0;
+            case CargoType.Remains:
+                return 2;
+            case CargoType.Healing:
+                return 1;
+            case CargoType.Dagger:
+                return 1;
+            case CargoType.Rock:
+                return 3;
+            case CargoType.Sword:
+                return 20;
+            case CargoType.Cannoner:
+                return 0;
+            default:
+                return 99;
+        }
+    }
+
+
+    //////////
     // PALETTE
     //////////
 

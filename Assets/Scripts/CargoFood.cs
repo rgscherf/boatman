@@ -2,9 +2,15 @@
 using System;
 
 public class CargoFood : ICargo {
-    public int sellprice {get {return 6;}}
+    public int sellprice  {
+        get {
+            return Entities.SellPrice(CargoType.Food);
+        }
+    }
     public int price {
-        get { return 2; }
+        get {
+            return Entities.Price(CargoType.Food);
+        }
     }
     public float cargoFireTimer {
         get {

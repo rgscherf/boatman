@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"Car",
+				"CargoType	(Entities.cs)"
+			],
+			[
+				"color",
+				"ColorDockObject(Color targetColor, string targetObject)	void"
+			],
+			[
+				"Debit",
+				"DebitBooty(int amt)	bool"
+			],
+			[
+				"can",
+				"CanDebitBooty(int amt)	bool"
+			],
+			[
 				"cargocann",
 				"cargoCannonerObject	GameObject"
 			],
@@ -301,31 +317,38 @@
 	},
 	"file_history":
 	[
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/ICargo.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoDagger.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PlayerController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CannonerController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoCannoner.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Entities.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/HealthController.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/GameController.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/EnemyBasic.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CoinController.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoRemains.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoRock.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/RemainsController.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoFood.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/SwordController.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoHealing.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoSword.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoRock.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoDagger.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoHealing.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoRemains.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoEmpty.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoFood.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/ICargo.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/HealthController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/CameraShaker.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/EnemyBasic.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PlayerController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Port.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PortActivation.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PortDeactivation.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/FireObjectController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/GameController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/CannonController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/FoodController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Entities.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CoinController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/RemainsController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/SwordController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Maps.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/HealingController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/DaggerController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/ShopController.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/FireObjectController.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/FoodController.cs",
 		"/Users/rgscherf/projects/unity/boatman/.gitignore",
 		"/Users/rgscherf/projects/unity/boatman/Assets/SwordBladeController.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/PortDeactivation.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/PortActivation.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/UIImageColor.cs",
@@ -395,6 +418,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"cargoType",
+			"GameObject",
+			"cargoType",
+			"Int",
+			"enities",
+			"SetupStaticMapObjects",
+			"target",
+			"lastVisitedPort",
+			"activePort",
+			"1",
 			"price",
 			"shop",
 			"        @\"\n        ssss...................................\n        ssss...................................\n        ssss...................................\n        ssss...................................\n        .......................................\n        .......................................\n        .......................................\n        .......................................\n        .......................................\n        .......................................\n        .......................................\n        .......................................\n        .......................................\n        .......................................\n        .......................................\n        ...................................ssss\n        ...................................ssss\n        ...................................ssss\n        ...................................ssss\n        \",\n",
@@ -487,18 +520,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
@@ -537,6 +563,154 @@
 		"selected_items":
 		[
 			[
+				"enemy",
+				"Assets/Scripts/EnemyBasic.cs"
+			],
+			[
+				"cannoner",
+				"Assets/Scripts/CargoCannoner.cs"
+			],
+			[
+				"sword",
+				"Assets/Scripts/CargoSword.cs"
+			],
+			[
+				"cargoro",
+				"Assets/Scripts/CargoRock.cs"
+			],
+			[
+				"dagger",
+				"Assets/Scripts/CargoDagger.cs"
+			],
+			[
+				"heal",
+				"Assets/Scripts/CargoHealing.cs"
+			],
+			[
+				"remains",
+				"Assets/Scripts/CargoRemains.cs"
+			],
+			[
+				"empty",
+				"Assets/Scripts/CargoEmpty.cs"
+			],
+			[
+				"food",
+				"Assets/Scripts/CargoFood.cs"
+			],
+			[
+				"cannon",
+				"Assets/Scripts/CargoCannoner.cs"
+			],
+			[
+				"cargoca",
+				"Assets/Scripts/CargoCannoner.cs"
+			],
+			[
+				"cargosw",
+				"Assets/Scripts/CargoSword.cs"
+			],
+			[
+				"rock",
+				"Assets/Scripts/CargoRock.cs"
+			],
+			[
+				"healin",
+				"Assets/Scripts/CargoHealing.cs"
+			],
+			[
+				"cargoem",
+				"Assets/Scripts/CargoEmpty.cs"
+			],
+			[
+				"dagg",
+				"Assets/Scripts/CargoDagger.cs"
+			],
+			[
+				"rema",
+				"Assets/Scripts/CargoRemains.cs"
+			],
+			[
+				"emp",
+				"Assets/Scripts/CargoEmpty.cs"
+			],
+			[
+				"cargocann",
+				"Assets/Scripts/CargoCannoner.cs"
+			],
+			[
+				"cargoswo",
+				"Assets/Scripts/CargoSword.cs"
+			],
+			[
+				"emptyc",
+				"Assets/Scripts/CargoEmpty.cs"
+			],
+			[
+				"i",
+				"Assets/Scripts/ICargo.cs"
+			],
+			[
+				"entities",
+				"Assets/Scripts/Entities.cs"
+			],
+			[
+				"eney",
+				"Assets/Scripts/EnemyBasic.cs"
+			],
+			[
+				"camera",
+				"Assets/CameraShaker.cs"
+			],
+			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"health",
+				"Assets/Scripts/HealthController.cs"
+			],
+			[
+				"healing",
+				"Assets/Scripts/CargoHealing.cs"
+			],
+			[
+				"dea",
+				"Assets/Scripts/PortDeactivation.cs"
+			],
+			[
+				"port",
+				"Assets/Scripts/Port.cs"
+			],
+			[
+				"gamc",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"icannon",
+				"Assets/Scripts/CargoCannoner.cs"
+			],
+			[
+				"cargocon",
+				"Assets/Scripts/CargoController.cs"
+			],
+			[
+				"player",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"cannonercon",
+				"Assets/Scripts/CannonerController.cs"
+			],
+			[
+				"foodcon",
+				"Assets/Scripts/FoodController.cs"
+			],
+			[
+				"firecon",
+				"Assets/Scripts/FireObjectController.cs"
+			],
+			[
 				"cargo",
 				"Assets/Scripts/CargoDagger.cs"
 			],
@@ -545,20 +719,8 @@
 				"Assets/Scripts/ICargo.cs"
 			],
 			[
-				"cargocann",
-				"Assets/Scripts/CargoCannoner.cs"
-			],
-			[
-				"entities",
-				"Assets/Scripts/Entities.cs"
-			],
-			[
 				"healthcon",
 				"Assets/Scripts/HealthController.cs"
-			],
-			[
-				"playercon",
-				"Assets/Scripts/PlayerController.cs"
 			],
 			[
 				"cargore",
@@ -585,24 +747,8 @@
 				"Assets/Scripts/Entities.cs"
 			],
 			[
-				"enemy",
-				"Assets/Scripts/EnemyBasic.cs"
-			],
-			[
-				"sword",
-				"Assets/SwordController.cs"
-			],
-			[
-				"rock",
-				"Assets/Scripts/CargoRock.cs"
-			],
-			[
 				"cargoheal",
 				"Assets/Scripts/CargoHealing.cs"
-			],
-			[
-				"healing",
-				"Assets/HealingController.cs"
 			],
 			[
 				"map",
@@ -615,30 +761,6 @@
 			[
 				"gamcon",
 				"Assets/Scripts/GameController.cs"
-			],
-			[
-				"cargosw",
-				"Assets/Scripts/CargoSword.cs"
-			],
-			[
-				"heal",
-				"Assets/HealingController.cs"
-			],
-			[
-				"health",
-				"Assets/Scripts/HealthController.cs"
-			],
-			[
-				"dagger",
-				"Assets/Scripts/DaggerController.cs"
-			],
-			[
-				"foodcon",
-				"Assets/Scripts/FoodController.cs"
-			],
-			[
-				"healin",
-				"Assets/HealingController.cs"
 			],
 			[
 				"fireob",
@@ -667,10 +789,6 @@
 			[
 				"cargom",
 				"Assets/Scripts/CargoEmpty.cs"
-			],
-			[
-				"food",
-				"Assets/Scripts/CargoFood.cs"
 			],
 			[
 				"shopc",
@@ -709,20 +827,8 @@
 				"Assets/Scripts/PlayerController.cs"
 			],
 			[
-				"cargocon",
-				"Assets/Scripts/CargoController.cs"
-			],
-			[
 				"shopcon",
 				"Assets/ShopController.cs"
-			],
-			[
-				"firecon",
-				"Assets/Scripts/FireObjectController.cs"
-			],
-			[
-				"cargoro",
-				"Assets/Scripts/CargoRock.cs"
 			],
 			[
 				"entii",
@@ -731,10 +837,6 @@
 			[
 				"da",
 				"Assets/Scripts/CargoDagger.cs"
-			],
-			[
-				"i",
-				"Assets/Scripts/ICargo.cs"
 			],
 			[
 				"portde",
@@ -795,10 +897,6 @@
 			[
 				"hullcon",
 				"Assets/HullController.cs"
-			],
-			[
-				"player",
-				"Assets/Scripts/PlayerController.cs"
 			],
 			[
 				"cargoda",
@@ -969,8 +1067,8 @@
 	{
 		"_vintageous_last_buffer_search": "Attackrecoverytim",
 		"_vintageous_last_buffer_search_command": "vi_slash",
-		"_vintageous_last_char_search_command": "vi_f",
-		"_vintageous_last_character_search": "I",
+		"_vintageous_last_char_search_command": "vi_t",
+		"_vintageous_last_character_search": "S",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{

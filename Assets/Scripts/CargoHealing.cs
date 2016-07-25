@@ -26,12 +26,12 @@ public class CargoHealing : ICargo {
     }
     public int price {
         get {
-            return 6;
+            return Entities.Price(CargoType.Healing);
         }
     }
     public int sellprice {
         get {
-            return 1;
+            return Entities.SellPrice(CargoType.Healing);
         }
     }
     public UnityEngine.GameObject cargoFireObject {

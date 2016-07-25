@@ -37,6 +37,7 @@ public class HealthController : MonoBehaviour {
             currentHealth -= debitamount;
             invulnTimer.Reset();
             Flicker(invulnTimer.Cooldown());
+            SendMessage("TookDamage");
             if (gameObject.tag == "Player") {
                 gameObject.GetComponent<PlayerController>().UpdateHealth(currentHealth);
             }

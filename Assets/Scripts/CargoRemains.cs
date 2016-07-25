@@ -26,12 +26,12 @@ public class CargoRemains : ICargo {
     }
     public int price {
         get {
-            return 0;
+            return Entities.Price(CargoType.Remains);
         }
     }
     public int sellprice {
         get {
-            return 2;
+            return Entities.SellPrice(CargoType.Remains);
         }
     }
     public UnityEngine.GameObject cargoFireObject {

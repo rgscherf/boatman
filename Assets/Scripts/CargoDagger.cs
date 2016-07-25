@@ -3,9 +3,15 @@ using System;
 using System.Collections;
 
 public class CargoDagger : ICargo {
-    public int sellprice {get {return 1;}}
+    public int sellprice {
+        get {
+            return Entities.SellPrice(CargoType.Dagger);
+        }
+    }
     public int price {
-        get { return 1;}
+        get {
+            return Entities.Price(CargoType.Dagger);
+        }
     }
     public float cargoFireTimer {
         get {

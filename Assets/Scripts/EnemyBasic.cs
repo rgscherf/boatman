@@ -95,16 +95,20 @@ public class EnemyBasic : MonoBehaviour {
     }
 
     void Update() {
-        if (!begunPathfinding) {
-            CheckPathfindingActivation();
-            return;
-        }
-        if (!recoveringFromAttack) {
-            // if activated && not recoveringFromAttack, update target and move toward it
-            Pathfind();
-            return;
+        if (playerTransform != null) {
+            if (!begunPathfinding) {
+                CheckPathfindingActivation();
+                return;
+            }
+            if (!recoveringFromAttack) {
+                // if activated && not recoveringFromAttack, update target and move toward it
+                Pathfind();
+                return;
+            } else {
+                StepAttackRecovery();
+            }
         } else {
-            StepAttackRecovery();
+            playerTransform = GameObject.Find("Player").transform;
         }
     }
 

@@ -2,12 +2,6 @@
 using System.Collections;
 
 public class Maps : MonoBehaviour {
-    Transform geometryParent;
-
-    void Start() {
-        geometryParent = GameObject.Find("MapObjects").transform;
-    }
-
     public void Reify(string map, Entities entities) {
         int x = -8;
         int y = 19;
@@ -42,6 +36,7 @@ public class Maps : MonoBehaviour {
     }
 
     void MakeObj(GameObject obj, int x, int y) {
+        var geometryParent = GameObject.Find("MapObjects").transform;
         var go = (GameObject) Instantiate(obj, new Vector2(x, y), Quaternion.identity);
         go.transform.SetParent(geometryParent);
 

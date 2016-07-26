@@ -77,7 +77,7 @@ public class Entities : MonoBehaviour {
             case CargoType.Sword:
                 return 15;
             case CargoType.Cannoner:
-                return 0;
+                return 5;
             default:
                 return 99;
         }
@@ -96,7 +96,7 @@ public class Entities : MonoBehaviour {
             case CargoType.Healing:
                 return 1;
             case CargoType.Dagger:
-                return 1;
+                return 2;
             case CargoType.Rock:
                 return 3;
             case CargoType.Sword:

@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
     GameObject mapObjects;
     GameObject merchantUI;
     ShopController shop;
+    public GameObject playerObject;
     PlayerController player;
     Maps maps;
 
@@ -20,6 +21,9 @@ public class GameController : MonoBehaviour {
         foreach (var item in cargoFireCooldowns) {
             item.Value.Tick(Time.deltaTime);
         }
+        if (Input.GetButtonDown("Restart")) {
+            Restart();
+        }
     }
 
     // Use this for initialization
@@ -30,22 +34,12 @@ public class GameController : MonoBehaviour {
         maps = GetComponent<Maps>();
     }
 
-    void Start () {
-        entities = GameObject.Find("Entities").GetComponent<Entities>();
-        mapObjects = GameObject.Find("MapObjects");
-        GameObject.Find("background").GetComponent<SpriteRenderer>().color = entities.palette.background;
-        player = GameObject.Find("Player").GetComponent<PlayerController>();
-
-        MapInit();
-
-        sliderTop = GameObject.Find("sliderTop");
-        sliderBottom = GameObject.Find("sliderBottom");
-        sliderRight = GameObject.Find("sliderRight");
-        sliderLeft = GameObject.Find("sliderLeft");
-
+    void MapSetup() {
+        var pgo = (GameObject) Instantiate(playerObject, new Vector3(3, 15, -1), Quaternion.identity);
+        pgo.name = "Player";
+        player = pgo.GetComponent<PlayerController>();
         cargo = new Dictionary<int, ICargo>();
         cargoFireCooldowns = new Dictionary<int, Timer>();
-
 
         // INITIAL CARGO LOADOUT
 
@@ -55,7 +49,33 @@ public class GameController : MonoBehaviour {
         // SPAWN MAP OBJECTS
 
         PlaceObjects();
+    }
 
+    public void Restart() {
+        Cleanup();
+        MapSetup();
+    }
+
+    void Cleanup() {
+        DestroyObjects();
+        if (player.gameObject != null) {
+            Object.Destroy(player.gameObject);
+        }
+    }
+
+    void Start () {
+        entities = GameObject.Find("Entities").GetComponent<Entities>();
+        GameObject.Find("background").GetComponent<SpriteRenderer>().color = entities.palette.background;
+        mapObjects = GameObject.Find("MapObjects");
+
+        MapInit();
+
+        sliderTop = GameObject.Find("sliderTop");
+        sliderBottom = GameObject.Find("sliderBottom");
+        sliderRight = GameObject.Find("sliderRight");
+        sliderLeft = GameObject.Find("sliderLeft");
+
+        MapSetup();
     }
 
     void PlaceObjects() {
@@ -99,30 +119,44 @@ public class GameController : MonoBehaviour {
     ///////////////////
 
     ICargo[] MakeShopInventory(Port port) {
-        ICargo[] basicCargo = {
+        // 'useful cargo': cargo with effects
+        ICargo[] basicCargoUseful = {
             new CargoDagger(),
             new CargoEmpty(),
-            new CargoEmpty(),
         };
-        ICargo[] oldTownCargo = {
+        ICargo[] oldTownCargoUseful = {
             new CargoSword(),
-            new CargoFood(),
             new CargoHealing(),
         };
-        ICargo[] ratTownCargo = {
+        ICargo[] ratTownCargoUseful = {
             new CargoHealing(),
-            new CargoRock(),
             new CargoCannoner(),
         };
-        ICargo[] res = port == Port.Top
-                       ? basicCargo.Concat(oldTownCargo).ToArray()
-                       : basicCargo.Concat(ratTownCargo).ToArray();
-        const int numItems = 3;
+
+        // 'econ cargo': cargo to sell
+        ICargo[] basicCargoEcon = {
+        };
+        ICargo[] oldTownCargoEcon = {
+            new CargoFood(),
+        };
+        ICargo[] ratTownCargoEcon = {
+            new CargoRock(),
+        };
+
+        // merchant inventory generation
+        // first two slots are always 'useful cargo'
+        // final slot is always economic.
+        ICargo[] usefulCargo = port == Port.Top
+                               ? basicCargoUseful.Concat(oldTownCargoUseful).ToArray()
+                               : basicCargoUseful.Concat(ratTownCargoUseful).ToArray();
+        ICargo[] econCargo = port == Port.Top
+                             ? basicCargoEcon.Concat(oldTownCargoEcon).ToArray()
+                             : basicCargoEcon.Concat(ratTownCargoEcon).ToArray();
         var fin = new List<ICargo>();
-        for (var i = 0; i < numItems; i++) {
-            var index = Random.Range(0, res.Length);
-            fin.Add(res[index]);
-        }
+        fin.Add(usefulCargo[Random.Range(0, usefulCargo.Length)]);
+        fin.Add(usefulCargo[Random.Range(0, usefulCargo.Length)]);
+        fin.Add(econCargo[Random.Range(0, econCargo.Length)]);
+
         return fin.ToArray();
     }
 

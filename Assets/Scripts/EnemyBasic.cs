@@ -32,7 +32,7 @@ public class EnemyBasic : MonoBehaviour {
 
         agent = GetComponent<PolyNavAgent>();
         agent.OnDestinationReached += BeginAttack;
-        playerTransform = GameObject.Find("Player").transform;
+        // playerTransform = GameObject.Find("Player").transform;
 
 
         // have to init an instant attack cooldown
@@ -108,7 +108,9 @@ public class EnemyBasic : MonoBehaviour {
                 StepAttackRecovery();
             }
         } else {
-            playerTransform = GameObject.Find("Player").transform;
+            if (GameObject.Find("Player") != null) {
+                playerTransform = GameObject.Find("Player").transform;
+            }
         }
     }
 

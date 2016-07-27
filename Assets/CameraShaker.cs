@@ -15,17 +15,20 @@ public class CameraShaker : MonoBehaviour {
     }
 
     void Update() {
-        if (!shaking) {
-            transform.position = originalPosition;
-        } else {
-            shakeTimer.Tick(Time.deltaTime);
-            if (shakeTimer.Check()) {
+        shakeTimer.Tick(Time.deltaTime);
+        if (shakeTimer.Check()) {
+            if (shaking) {
                 shaking = false;
-            } else {
-                Vector3 rand = Random.insideUnitCircle * magnitude;
-                transform.position = originalPosition + new Vector3(rand.x, rand.y, 0f);
+                transform.position = originalPosition;
             }
+        } else {
+            Vector3 rand = Random.insideUnitCircle * magnitude;
+            transform.position = originalPosition + new Vector3(rand.x, rand.y, 0f);
         }
+    }
+
+    public void ResetPosition(Vector3 pos) {
+        originalPosition = pos;
     }
 
     public void Shake(float time, float mag = 0.1f) {

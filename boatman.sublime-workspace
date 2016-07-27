@@ -4,6 +4,78 @@
 		"selected_items":
 		[
 			[
+				"Camera",
+				"Camera.main"
+			],
+			[
+				"tutorial",
+				"onTutorialMap	bool"
+			],
+			[
+				"move",
+				"move(GameObject gameObject, Vector3 to, float time)	LTDescr"
+			],
+			[
+				"Game",
+				"GameController	(GameController.cs)"
+			],
+			[
+				"Collider",
+				"Collider2D	Collider2D"
+			],
+			[
+				"Update",
+				"UpdateHealth"
+			],
+			[
+				"local",
+				"localScale	Vector3 { get; set; }"
+			],
+			[
+				"game",
+				"gameObject	(PlayerController.cs)"
+			],
+			[
+				"geo",
+				"geometry	(BoatmanColors.cs)"
+			],
+			[
+				"Destr",
+				"DestroyObjects()	void"
+			],
+			[
+				"rat",
+				"ratTownCargoEcon"
+			],
+			[
+				"oldo",
+				"oldTownCargoEcon"
+			],
+			[
+				"basicc",
+				"basicCargoEcon"
+			],
+			[
+				"ratto",
+				"ratTownCargoUseful"
+			],
+			[
+				"oldtow",
+				"oldTownCargoUseful"
+			],
+			[
+				"basic",
+				"basicCargoUseful"
+			],
+			[
+				"oldto",
+				"oldTownCargoUseful"
+			],
+			[
+				"basicCar",
+				"basicCargoUseful"
+			],
+			[
 				"Car",
 				"CargoType	(Entities.cs)"
 			],
@@ -58,10 +130,6 @@
 			[
 				"rock",
 				"mapRockSmall	GameObject"
-			],
-			[
-				"basic",
-				"basicEnemy	(Entities.cs)"
 			],
 			[
 				"Random",
@@ -317,6 +385,22 @@
 	},
 	"file_history":
 	[
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PortActivation.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/PortActivationTutorial.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/CameraShaker.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/CameraPositionScripter.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/AdvanceTitleScreen.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PlayerController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/HealthController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/EnemyBasic.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/BoatmanColors.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/SettableColor.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/BackgroundColor.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Entities.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/IndividualSwordController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/SwordController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Maps.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CannonerController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoCannoner.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoSword.cs",
@@ -327,23 +411,15 @@
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoEmpty.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoFood.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/ICargo.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/HealthController.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/CameraShaker.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/EnemyBasic.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PlayerController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Port.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PortActivation.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PortDeactivation.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/FireObjectController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/GameController.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/CannonController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/FoodController.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Entities.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CoinController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/RemainsController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/SwordController.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Maps.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/HealingController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/DaggerController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/ShopController.cs",
@@ -364,7 +440,6 @@
 		"/Users/rgscherf/projects/unity/boatman/Assets/FoodController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Timer.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/IFirable.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/BoatmanColors.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/cargoFood.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/PickupColor.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoObject.cs",
@@ -418,6 +493,27 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ontu",
+			"Camera",
+			"TutorialPlayerPosition",
+			"slider",
+			"       ",
+			"3f",
+			"Text",
+			"SpriteRenderer",
+			"break",
+			"\n                ",
+			"Color",
+			"PlaceObjects",
+			"Cleanup",
+			"PlayerDataSetup",
+			"MapSetup",
+			"PlayerObjectsSetup",
+			"MapSetup",
+			"MapInit",
+			"usefulCargo",
+			"basicCargoUseful",
+			"iCargo",
 			"cargoType",
 			"GameObject",
 			"cargoType",
@@ -563,16 +659,128 @@
 		"selected_items":
 		[
 			[
+				"camera",
+				"Assets/CameraPositionScripter.cs"
+			],
+			[
+				"deac",
+				"Assets/Scripts/PortDeactivation.cs"
+			],
+			[
+				"port",
+				"Assets/PortActivationTutorial.cs"
+			],
+			[
+				"porta",
+				"Assets/Scripts/PortActivation.cs"
+			],
+			[
+				"contr",
+				"Assets/Scripts/CargoController.cs"
+			],
+			[
+				"player",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"advance",
+				"Assets/AdvanceTitleScreen.cs"
+			],
+			[
+				"health",
+				"Assets/Scripts/HealthController.cs"
+			],
+			[
+				"shaker",
+				"Assets/CameraShaker.cs"
+			],
+			[
+				"healc",
+				"Assets/Scripts/HealthController.cs"
+			],
+			[
+				"enemyba",
+				"Assets/Scripts/EnemyBasic.cs"
+			],
+			[
+				"shake",
+				"Assets/CameraShaker.cs"
+			],
+			[
+				"setta",
+				"Assets/SettableColor.cs"
+			],
+			[
+				"settabl",
+				"Assets/SettableColor.cs"
+			],
+			[
+				"color",
+				"Assets/Scripts/BoatmanColors.cs"
+			],
+			[
+				"entities",
+				"Assets/Scripts/Entities.cs"
+			],
+			[
+				"background",
+				"Assets/BackgroundColor.cs"
+			],
+			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"gamcon",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"camerapo",
+				"Assets/CameraPositionScripter.cs"
+			],
+			[
+				"healthcon",
+				"Assets/Scripts/HealthController.cs"
+			],
+			[
+				"playerc",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"enemyb",
+				"Assets/Scripts/EnemyBasic.cs"
+			],
+			[
 				"enemy",
 				"Assets/Scripts/EnemyBasic.cs"
 			],
 			[
-				"cannoner",
-				"Assets/Scripts/CargoCannoner.cs"
+				"indivud",
+				"Assets/Scripts/IndividualSwordController.cs"
+			],
+			[
+				"maps",
+				"Assets/Scripts/Maps.cs"
+			],
+			[
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
 			],
 			[
 				"sword",
-				"Assets/Scripts/CargoSword.cs"
+				"Assets/Scripts/SwordController.cs"
+			],
+			[
+				"indivi",
+				"Assets/Scripts/IndividualSwordController.cs"
+			],
+			[
+				"swordcon",
+				"Assets/Scripts/SwordController.cs"
+			],
+			[
+				"cannoner",
+				"Assets/Scripts/CargoCannoner.cs"
 			],
 			[
 				"cargoro",
@@ -651,24 +859,8 @@
 				"Assets/Scripts/ICargo.cs"
 			],
 			[
-				"entities",
-				"Assets/Scripts/Entities.cs"
-			],
-			[
 				"eney",
 				"Assets/Scripts/EnemyBasic.cs"
-			],
-			[
-				"camera",
-				"Assets/CameraShaker.cs"
-			],
-			[
-				"playercon",
-				"Assets/Scripts/PlayerController.cs"
-			],
-			[
-				"health",
-				"Assets/Scripts/HealthController.cs"
 			],
 			[
 				"healing",
@@ -677,10 +869,6 @@
 			[
 				"dea",
 				"Assets/Scripts/PortDeactivation.cs"
-			],
-			[
-				"port",
-				"Assets/Scripts/Port.cs"
 			],
 			[
 				"gamc",
@@ -693,10 +881,6 @@
 			[
 				"cargocon",
 				"Assets/Scripts/CargoController.cs"
-			],
-			[
-				"player",
-				"Assets/Scripts/PlayerController.cs"
 			],
 			[
 				"cannonercon",
@@ -719,20 +903,12 @@
 				"Assets/Scripts/ICargo.cs"
 			],
 			[
-				"healthcon",
-				"Assets/Scripts/HealthController.cs"
-			],
-			[
 				"cargore",
 				"Assets/Scripts/CargoRemains.cs"
 			],
 			[
 				"icargo",
 				"Assets/Scripts/ICargo.cs"
-			],
-			[
-				"gamecon",
-				"Assets/Scripts/GameController.cs"
 			],
 			[
 				"remainscon",
@@ -756,10 +932,6 @@
 			],
 			[
 				"game",
-				"Assets/Scripts/GameController.cs"
-			],
-			[
-				"gamcon",
 				"Assets/Scripts/GameController.cs"
 			],
 			[
@@ -799,10 +971,6 @@
 				"Assets/Scripts/Entities.cs"
 			],
 			[
-				"maps",
-				"Assets/Scripts/Maps.cs"
-			],
-			[
 				"blade",
 				"Assets/SwordBladeController.cs"
 			],
@@ -821,10 +989,6 @@
 			[
 				"cargow",
 				"Assets/Scripts/CargoSword.cs"
-			],
-			[
-				"playerc",
-				"Assets/Scripts/PlayerController.cs"
 			],
 			[
 				"shopcon",
@@ -859,20 +1023,12 @@
 				"Assets/Scripts/UITextColorShop.cs"
 			],
 			[
-				"color",
-				"Assets/Scripts/UITextColor.cs"
-			],
-			[
 				"cargofoo",
 				"Assets/Scripts/CargoFood.cs"
 			],
 			[
 				"ic",
 				"Assets/Scripts/ICargo.cs"
-			],
-			[
-				"porta",
-				"Assets/PortActivation.cs"
 			],
 			[
 				"pickup",
@@ -1013,34 +1169,6 @@
 			[
 				"spine",
 				"Assets/Scripts/SpinePotionController.cs"
-			],
-			[
-				"uicon",
-				"Assets/Scripts/UIController.cs"
-			],
-			[
-				"potioncol",
-				"Assets/Scripts/PotionColors.cs"
-			],
-			[
-				"trigger",
-				"Assets/Scripts/RoomChangeTrigger.cs"
-			],
-			[
-				"heartsh",
-				"Assets/Scripts/ShrineHeartShard.cs"
-			],
-			[
-				"shrinehea",
-				"Assets/Scripts/ShrineHeartController.cs"
-			],
-			[
-				"room",
-				"Assets/Scripts/Room.cs"
-			],
-			[
-				"healt",
-				"Assets/Scripts/HealthController.cs"
 			]
 		],
 		"width": 0.0
@@ -1067,8 +1195,8 @@
 	{
 		"_vintageous_last_buffer_search": "Attackrecoverytim",
 		"_vintageous_last_buffer_search_command": "vi_slash",
-		"_vintageous_last_char_search_command": "vi_t",
-		"_vintageous_last_character_search": "S",
+		"_vintageous_last_char_search_command": "vi_f",
+		"_vintageous_last_character_search": ")",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{

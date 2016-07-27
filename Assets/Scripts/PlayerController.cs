@@ -23,13 +23,16 @@ public class PlayerController : MonoBehaviour {
     const float maxSpeed = 10f;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         entities = GameObject.Find("Entities").GetComponent<Entities>();
         cargoController = GameObject.Find("Cargo").GetComponent<CargoController>();
         hullController = GameObject.Find("Hull").GetComponent<HullController>();
         bootyController = GameObject.Find("Booty").GetComponent<BootyController>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         rigid = GetComponent<Rigidbody2D>();
+    }
+
+    void Start() {
         spr = GetComponent<SpriteRenderer>();
         spr.color = entities.palette.player;
         GetComponent<HealthController>().Init(6, spr.color);

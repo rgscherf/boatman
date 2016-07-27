@@ -12,14 +12,19 @@ public class GameController : MonoBehaviour {
     public GameObject playerObject;
     PlayerController player;
     Maps maps;
+    GameObject mainUI;
 
     Dictionary<int, ICargo> cargo;
     Dictionary<int, Timer> cargoFireCooldowns;
 
 
+    bool onTutorialMap = true;
+
     void Update() {
-        foreach (var item in cargoFireCooldowns) {
-            item.Value.Tick(Time.deltaTime);
+        if (cargoFireCooldowns != null) {
+            foreach (var item in cargoFireCooldowns) {
+                item.Value.Tick(Time.deltaTime);
+            }
         }
         if (Input.GetButtonDown("Restart")) {
             Restart();
@@ -28,13 +33,30 @@ public class GameController : MonoBehaviour {
 
     // Use this for initialization
     void Awake() {
+        // init UI
+        // these will be deactivated immediately so we need the references now
         merchantUI = GameObject.Find("MerchantUI");
         shop = GameObject.Find("Shop").GetComponent<ShopController>();
         merchantUI.SetActive(false);
+        mainUI = GameObject.Find("MainUIPanel");
+        mainUI.SetActive(false);
         maps = GetComponent<Maps>();
+
+        entities = GameObject.Find("Entities").GetComponent<Entities>();
+        GameObject.Find("background").GetComponent<SpriteRenderer>().color = entities.palette.background;
+        mapObjects = GameObject.Find("MapObjects");
+
+        // begin tutorial sequence.
     }
 
-    void MapSetup() {
+    void Start () {
+        StaticMapObjectsInit();
+        PlayerDataInit();
+        StageTutorial();
+    }
+
+    void PlayerDataInit() {
+        mainUI.SetActive(true);
         var pgo = (GameObject) Instantiate(playerObject, new Vector3(3, 15, -1), Quaternion.identity);
         pgo.name = "Player";
         player = pgo.GetComponent<PlayerController>();
@@ -46,39 +68,75 @@ public class GameController : MonoBehaviour {
         AddCargo(new CargoDagger());
         AddCargo(new CargoFood());
 
-        // SPAWN MAP OBJECTS
-
-        PlaceObjects();
+        everVisitedPort = false;
+        inPort = false;
     }
 
     public void Restart() {
-        Cleanup();
-        MapSetup();
+        if (inPort) {
+            // PlayerDataInit() clears inPort, so we need this check at the top
+            ClearPortObjects(activePort);
+        }
+        StaticMapObjectsInit();
+        MapCleanup();
+        PlayerDataInit();
+        onTutorialMap = false;
+        player.transform.position = new Vector3(2.5f, 15f, -1f);
+        Camera.main.GetComponent<CameraPositionScripter>().CompleteTutorial();
+
+        // purely to recolor dock prefabs.
+        // has unintentional side-effect of reassigning slider objects.
+        SpawnDynamicMapObjects();
     }
 
-    void Cleanup() {
+    void MapCleanup() {
         DestroyObjects();
         if (player.gameObject != null) {
             Object.Destroy(player.gameObject);
         }
     }
 
-    void Start () {
-        entities = GameObject.Find("Entities").GetComponent<Entities>();
-        GameObject.Find("background").GetComponent<SpriteRenderer>().color = entities.palette.background;
-        mapObjects = GameObject.Find("MapObjects");
+    /////////////////////
+    // TUTORIAL SCRIPTING
+    /////////////////////
 
-        MapInit();
-
-        sliderTop = GameObject.Find("sliderTop");
-        sliderBottom = GameObject.Find("sliderBottom");
-        sliderRight = GameObject.Find("sliderRight");
-        sliderLeft = GameObject.Find("sliderLeft");
-
-        MapSetup();
+    void StageTutorial() {
+        // var cam = Camera.main;
+        // cam.transform.position = cam.GetComponent<CameraPositionScripter>().titlePosition;
+        player.gameObject.transform.position = new Vector3(-112f, -106f, -1f);
+        player.gameObject.transform.localScale = new Vector3(4f, 4f, 1f);
+        mainUI.SetActive(false);
     }
 
-    void PlaceObjects() {
+    void TutorialPlayerPosition() {
+        player.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+        player.gameObject.transform.position = new Vector3(-114f, -144f, -1f);
+        player.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+    }
+
+    void ActivateMainUI() {
+        mainUI.SetActive(true);
+    }
+
+    Vector3 transportedPlayerPos;
+
+    public void AdvanceTutorial() {
+        Invoke("TutorialPlayerPosition", 1f);
+        Invoke("ActivateMainUI", 1.5f);
+        Camera.main.GetComponent<CameraPositionScripter>().AdvanceTutorial();
+    }
+
+    public void CompleteTutorial() {
+        TweenHelper(GameObject.Find("sliderBottomDummy"), new Vector3(-119.5f + 18.6f, -149.89f + -9.2f, -5f));
+        TweenHelper(GameObject.Find("sliderRightDummy"), new Vector3(-119.5f + 29.2f, -149.89f + 0.2f, -5f));
+        Vector3 relativePos = player.gameObject.transform.position - Camera.main.gameObject.transform.position;
+        Camera.main.gameObject.GetComponent<CameraPositionScripter>().CompleteTutorial();
+        var newPos = Camera.main.gameObject.transform.position + relativePos;
+        newPos.z = -1f;
+        player.gameObject.transform.position = newPos;
+    }
+
+    void SpawnDynamicMapObjects() {
         var map = Maps.RandomMap();
         maps.Reify(map, entities);
     }
@@ -168,12 +226,16 @@ public class GameController : MonoBehaviour {
     GameObject sliderRight;
     GameObject sliderLeft;
 
-    float slideTime = 0.5f;
+    const float slideTime = 0.5f;
     Port activePort;
     bool everVisitedPort;
     public bool inPort;
 
     public void ActivatePort(Port port) {
+        if (onTutorialMap) {
+            CompleteTutorial();
+            onTutorialMap = false;
+        }
         if (everVisitedPort && port == activePort) { return; }
         if (!everVisitedPort) { everVisitedPort = true; }
         activePort = port;
@@ -207,10 +269,11 @@ public class GameController : MonoBehaviour {
                                     "WATCH YOUR BACK.",
                                     "THERE ARE BAD THINGS IN THE FOREST."
                                    };
+
         var welcome = activePort == Port.Top
                       ? oldTownWelcome[Random.Range(0, oldTownWelcome.Length)]
                       : ratTownWelcome[Random.Range(0, ratTownWelcome.Length)];
-
+        welcome = !onTutorialMap ? welcome : "WELCOME TO OLD TOWN. YOU'RE ON YOUR OWN FROM HERE.";
 
 
         merchantUI.SetActive(true);
@@ -230,7 +293,7 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public void DeactivatePort(Port port) {
+    public void ClearPortObjects(Port port) {
         if (!inPort) { return; }
         inPort = false;
         if (port == Port.Top) {
@@ -244,11 +307,15 @@ public class GameController : MonoBehaviour {
             ColorDockObject(entities.palette.geometry, "dock-bottomright");
         }
         merchantUI.SetActive(false);
-        PlaceObjects();
     }
 
-    void TweenHelper(GameObject obj, Vector3 vec) {
-        LeanTween.move(obj, vec, slideTime).setEase(LeanTweenType.easeInQuad);
+    public void DeactivatePort(Port port) {
+        ClearPortObjects(port);
+        SpawnDynamicMapObjects();
+    }
+
+    public void TweenHelper(GameObject obj, Vector3 vec, float slide = slideTime) {
+        LeanTween.move(obj, vec, slide).setEase(LeanTweenType.easeInQuad);
     }
 
     ////////////////////
@@ -321,7 +388,6 @@ public class GameController : MonoBehaviour {
     }
 
     public void ReceiveMerchantClick(int shopSlot) {
-        Debug.Log(string.Format("Received click at {0}", shopSlot));
         if (!inPort || !shop.ContainsKey(shopSlot)) { return; }
         int price = shop.GetPrice(shopSlot);
         if (player.CanDebitBooty(price) && CanAddCargo()) {
@@ -336,21 +402,14 @@ public class GameController : MonoBehaviour {
     // INIT STUFF
     /////////////
 
-    void MapInit() {
+    void StaticMapObjectsInit() {
+        sliderTop = GameObject.Find("sliderTop");
+        sliderBottom = GameObject.Find("sliderBottom");
+        sliderRight = GameObject.Find("sliderRight");
+        sliderLeft = GameObject.Find("sliderLeft");
+
         ColorDockObject(entities.palette.player, "dock-topleft");
         ColorDockObject(entities.palette.player, "dock-bottomright");
-        foreach (var y in Enumerable.Range(4, 16)) {
-            MakeRock(40, y);
-        }
-        foreach (var y in Enumerable.Range(0, 16)) {
-            MakeRock(-1, y);
-        }
-        foreach (var x in Enumerable.Range(-1, 37)) {
-            MakeRock(x, -1);
-        }
-        foreach (var x in Enumerable.Range(5, 36)) {
-            MakeRock(x, 20);
-        }
     }
 
     void ColorDockObject(Color targetColor, string targetObject) {

@@ -49,7 +49,7 @@ public class CargoController : MonoBehaviour {
             if (selectionBlinkTimer.Check()) {
                 cargoSlots[currentSelection].GetComponent<Image>().color = originalColor ?
                         entities.palette.player :
-                        entities.palette.geometry;
+                        entities.palette.danger;
                 originalColor = !originalColor;
                 selectionBlinkTimer.Reset();
             }

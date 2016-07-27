@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"Ceram",
+				"CargoType.CeramicBroken	(Entities.cs)"
+			],
+			[
+				"Ceramic",
+				"CeramicBroken	CargoType"
+			],
+			[
 				"Camera",
 				"Camera.main"
 			],
@@ -365,7 +373,7 @@
 				"Package Control: List Packages"
 			]
 		],
-		"width": 593.0
+		"width": 566.0
 	},
 	"console":
 	{
@@ -385,10 +393,17 @@
 	},
 	"file_history":
 	[
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoCeramic.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoCeramicBroken.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/cargoCeramicBroken.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/cargoCeramic.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoRock.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/ICargo.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/GameController.cs",
+		"/Users/rgscherf/projects/unity/boatman/Assets/CameraPositionScripter.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PortActivation.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/PortActivationTutorial.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/CameraShaker.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/CameraPositionScripter.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/AdvanceTitleScreen.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PlayerController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoController.cs",
@@ -404,17 +419,14 @@
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CannonerController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoCannoner.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoSword.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoRock.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoDagger.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoHealing.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoRemains.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoEmpty.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CargoFood.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/ICargo.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/Port.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/PortDeactivation.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/FireObjectController.cs",
-		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/GameController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/CannonController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/FoodController.cs",
 		"/Users/rgscherf/projects/unity/boatman/Assets/Scripts/CoinController.cs",
@@ -493,6 +505,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Ceramic",
+			"newPos",
+			"Debug.Log",
 			"ontu",
 			"Camera",
 			"TutorialPlayerPosition",
@@ -659,6 +674,58 @@
 		"selected_items":
 		[
 			[
+				"scrip",
+				"Assets/Scripts/CameraPositionScripter.cs"
+			],
+			[
+				"ceramic",
+				"Assets/Scripts/CargoCeramic.cs"
+			],
+			[
+				"broken",
+				"Assets/Scripts/CargoCeramicBroken.cs"
+			],
+			[
+				"ceram",
+				"Assets/Scripts/CargoCeramic.cs"
+			],
+			[
+				"cargocer",
+				"Assets/Scripts/cargoCeramic.cs"
+			],
+			[
+				"cera",
+				"Assets/Scripts/cargoCeramic.cs"
+			],
+			[
+				"ceramicb",
+				"Assets/Scripts/cargoCeramicBroken.cs"
+			],
+			[
+				"entities",
+				"Assets/Scripts/Entities.cs"
+			],
+			[
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"icar",
+				"Assets/Scripts/ICargo.cs"
+			],
+			[
+				"cargoro",
+				"Assets/Scripts/CargoRock.cs"
+			],
+			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"camerap",
+				"Assets/CameraPositionScripter.cs"
+			],
+			[
 				"camera",
 				"Assets/CameraPositionScripter.cs"
 			],
@@ -719,16 +786,8 @@
 				"Assets/Scripts/BoatmanColors.cs"
 			],
 			[
-				"entities",
-				"Assets/Scripts/Entities.cs"
-			],
-			[
 				"background",
 				"Assets/BackgroundColor.cs"
-			],
-			[
-				"playercon",
-				"Assets/Scripts/PlayerController.cs"
 			],
 			[
 				"gamcon",
@@ -763,10 +822,6 @@
 				"Assets/Scripts/Maps.cs"
 			],
 			[
-				"gamecon",
-				"Assets/Scripts/GameController.cs"
-			],
-			[
 				"sword",
 				"Assets/Scripts/SwordController.cs"
 			],
@@ -781,10 +836,6 @@
 			[
 				"cannoner",
 				"Assets/Scripts/CargoCannoner.cs"
-			],
-			[
-				"cargoro",
-				"Assets/Scripts/CargoRock.cs"
 			],
 			[
 				"dagger",
@@ -897,10 +948,6 @@
 			[
 				"cargo",
 				"Assets/Scripts/CargoDagger.cs"
-			],
-			[
-				"icar",
-				"Assets/Scripts/ICargo.cs"
 			],
 			[
 				"cargore",
@@ -1137,38 +1184,6 @@
 			[
 				"proje",
 				"project.clj"
-			],
-			[
-				"ine",
-				"src/cv2/index.clj"
-			],
-			[
-				"data",
-				"resources/data.json"
-			],
-			[
-				"rout",
-				"application/config/routes.php"
-			],
-			[
-				"healthc",
-				"Assets/Scripts/HealthController.cs"
-			],
-			[
-				"heart",
-				"Assets/Scripts/ShrineHeartController.cs"
-			],
-			[
-				"particle",
-				"Assets/Scripts/ParticleController.cs"
-			],
-			[
-				"hearts",
-				"Assets/Scripts/ShrineHeartController.cs"
-			],
-			[
-				"spine",
-				"Assets/Scripts/SpinePotionController.cs"
 			]
 		],
 		"width": 0.0
@@ -1195,8 +1210,8 @@
 	{
 		"_vintageous_last_buffer_search": "Attackrecoverytim",
 		"_vintageous_last_buffer_search_command": "vi_slash",
-		"_vintageous_last_char_search_command": "vi_f",
-		"_vintageous_last_character_search": ")",
+		"_vintageous_last_char_search_command": "vi_t",
+		"_vintageous_last_character_search": "S",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{

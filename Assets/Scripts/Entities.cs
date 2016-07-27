@@ -32,6 +32,9 @@ public class Entities : MonoBehaviour {
     public Sprite cargoCannonerSprite;
     public GameObject cargoCannonerObject;
 
+    public Sprite cargoCeramicSprite;
+    public Sprite cargoCeramicBrokenSprite;
+
 
     //////////////
     // MAP OBJECTS
@@ -78,6 +81,8 @@ public class Entities : MonoBehaviour {
                 return 15;
             case CargoType.Cannoner:
                 return 5;
+            case CargoType.Ceramic:
+                return 5;
             default:
                 return 99;
         }
@@ -103,6 +108,10 @@ public class Entities : MonoBehaviour {
                 return 20;
             case CargoType.Cannoner:
                 return 0;
+            case CargoType.Ceramic:
+                return 12;
+            case CargoType.CeramicBroken:
+                return 1;
             default:
                 return 99;
         }

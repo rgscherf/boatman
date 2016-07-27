@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour {
 
     public void TookDamage() {
         Camera.main.GetComponent<CameraShaker>().Shake(0.5f, 0.25f);
+        gameController.BreakCeramics();
     }
 
     public void Die() {

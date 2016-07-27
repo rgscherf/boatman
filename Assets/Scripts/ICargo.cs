@@ -10,6 +10,8 @@ public enum CargoType {Food,
                        Rock,
                        Sword,
                        Cannoner,
+                       Ceramic,
+                       CeramicBroken,
                       }
 
 public interface ICargo {

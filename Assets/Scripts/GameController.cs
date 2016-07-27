@@ -14,11 +14,19 @@ public class GameController : MonoBehaviour {
     Maps maps;
     GameObject mainUI;
 
+    bool onTutorialMap = true;
+
     Dictionary<int, ICargo> cargo;
     Dictionary<int, Timer> cargoFireCooldowns;
 
-
-    bool onTutorialMap = true;
+    public void BreakCeramics() {
+        for (var i = 1; i <= 4; i++) {
+            if (cargo.ContainsKey(i) && cargo[i].cargoType == CargoType.Ceramic) {
+                RemoveCargo(i);
+                AddCargo(new CargoCeramicBroken());
+            }
+        }
+    }
 
     void Update() {
         if (cargoFireCooldowns != null) {
@@ -67,6 +75,7 @@ public class GameController : MonoBehaviour {
 
         AddCargo(new CargoDagger());
         AddCargo(new CargoFood());
+        AddCargo(new CargoCeramic());
 
         everVisitedPort = false;
         inPort = false;
@@ -181,18 +190,18 @@ public class GameController : MonoBehaviour {
         ICargo[] basicCargoUseful = {
             new CargoDagger(),
             new CargoEmpty(),
+            new CargoHealing(),
         };
         ICargo[] oldTownCargoUseful = {
             new CargoSword(),
-            new CargoHealing(),
         };
         ICargo[] ratTownCargoUseful = {
-            new CargoHealing(),
             new CargoCannoner(),
         };
 
         // 'econ cargo': cargo to sell
         ICargo[] basicCargoEcon = {
+            new CargoCeramic(),
         };
         ICargo[] oldTownCargoEcon = {
             new CargoFood(),

@@ -25,7 +25,7 @@ public class CameraPositionScripter : MonoBehaviour {
 
     public void CompleteTutorial() {
         transform.position = mainPosition;
-        GetComponent<CameraShaker>().ResetPosition(tutorialPosition);
+        GetComponent<CameraShaker>().ResetPosition(mainPosition);
     }
 
 

@@ -14,13 +14,16 @@ public class PlayerController : MonoBehaviour {
     HullController hullController;
     BootyController bootyController;
 
+    public GameObject rangeFinderObject;
+    GameObject rangeFinder;
+
     // for paddle-based movement
     bool moveMouseDownPreviousFrame;
     GameObject paddleLine;
     Vector3 paddleStart;
-    const float maxDistance = 7f;
-    const float paddleForceMod = 10f;
-    const float maxSpeed = 10f;
+    const float maxDistance = 5f;
+    const float paddleForceMod = 60f;
+    const float maxSpeed = 8f;
 
     // Use this for initialization
     void Awake () {
@@ -43,6 +46,14 @@ public class PlayerController : MonoBehaviour {
         CheckMovement();
         CheckCargoSelection();
         CheckFire();
+    }
+
+    void FixedUpdate() {
+        if (shouldRelease) {
+            rigid.AddForce(releaseVec);
+            shouldRelease = false;
+        }
+        rigid.velocity = Vector2.ClampMagnitude(rigid.velocity, maxSpeed);
     }
 
 
@@ -89,6 +100,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Die() {
+        GameObject.Find("restart-wipe").GetComponent<TitleBackgroundController>().TweenInRestart();
         gameObject.SetActive(false);
     }
 
@@ -165,10 +177,16 @@ public class PlayerController : MonoBehaviour {
 
     void InitPaddle(Vector3 startpos) {
         moveMouseDownPreviousFrame = true;
+        var col = entities.palette.UI * new Color(1f, 1f, 1f, 0.75f);
+
+        rangeFinder = (GameObject) Instantiate(rangeFinderObject,
+                                               new Vector3(startpos.x, startpos.y, -9f),
+                                               Quaternion.identity);
+        rangeFinder.transform.localScale = new Vector3(maxDistance * 2, maxDistance * 2, 1f);
 
         paddleLine = (GameObject) Instantiate(entities.paddleLine, transform.position, Quaternion.identity);
         var lr = paddleLine.GetComponent<LineRenderer>();
-        lr.SetColors(entities.palette.UI, entities.palette.UI);
+        lr.SetColors(col, col);
         lr.SetWidth(0.25f, 0.25f);
 
         startpos.z = -9;
@@ -176,21 +194,31 @@ public class PlayerController : MonoBehaviour {
         paddleLine.GetComponent<LineRenderer>().SetPositions(new[] {paddleStart, paddleStart});
     }
 
+    // addfoce-ing happens in FixedUpdate
+    // based on these flags
+    bool shouldRelease;
+    Vector3 releaseVec;
     void ReleasePaddle(Vector3 mousepos) {
-        var dist = Mathf.Max(maxDistance, Vector3.Distance(paddleStart, mousepos));
-        var dir = Vector3.ClampMagnitude(paddleStart - mousepos, dist);
-        rigid.AddForce(dir * paddleForceMod);
-        rigid.velocity = Vector2.ClampMagnitude(rigid.velocity, maxSpeed);
+        var dir = Vector3.ClampMagnitude(paddleStart - mousepos, maxDistance);
+        shouldRelease = true;
+        releaseVec = dir * paddleForceMod;
 
         Object.Destroy(paddleLine);
+        Object.Destroy(rangeFinder);
         moveMouseDownPreviousFrame = false;
     }
 
     void UpdatePaddle(Vector3 mousepos) {
+        var adjmouse = new Vector3(mousepos.x, mousepos.y, -9f);
+        var dist = Mathf.Min(maxDistance, Vector3.Distance(paddleStart, adjmouse));
+        var pointDir = adjmouse - paddleStart;
+
+        pointDir = Vector3.ClampMagnitude(pointDir, maxDistance * 0.98f);
+        pointDir += paddleStart;
+        pointDir.z = -9f;
+
         var lr = paddleLine.GetComponent<LineRenderer>();
-        var dist = Vector3.Distance(paddleStart, mousepos);
-        mousepos.z = -9;
-        lr.SetPosition(1, mousepos);
+        lr.SetPosition(1, pointDir);
         lr.SetWidth(0f, dist * 0.15f);
     }
 }

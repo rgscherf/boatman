@@ -82,6 +82,7 @@ public class GameController : MonoBehaviour {
     }
 
     public void Restart() {
+        GameObject.Find("restart-wipe").GetComponent<TitleBackgroundController>().ResetPosition();
         if (inPort) {
             // PlayerDataInit() clears inPort, so we need this check at the top
             ClearPortObjects(activePort);
